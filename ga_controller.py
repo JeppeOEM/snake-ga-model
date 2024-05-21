@@ -16,6 +16,7 @@ class GAController(GameController):
         self.step = 0
         self.score = 0
         self.result = {}
+        self.moves = {"right":0,"left":0,"up":0,"down":0}
         if self.display:
             pygame.init()
             self.screen = pygame.display.set_mode((game.grid.x * game.scale, game.grid.y * game.scale))
@@ -35,9 +36,19 @@ class GAController(GameController):
 
     @property
     def fitness(self):
-        step, score, death = self.result.values()
+        step, score, death, without_food, moves = self.result.values()
+        score_weight = 10
+        total_moves = sum(moves.values())
+        percentage_moves = {key: (value / total_moves) * 100 for key, value in moves.items()}
+        for direction, percentage in percentage_moves.items():
+            if percentage > 40:
+                return -1
 
-        fit = score/step
+        without_food = -20*(without_food)
+        death = -1*(death)
+
+        fit = (score*score_weight)/step
+        fit = fit+death+without_food
         return fit
 
     def update(self) -> Vector:
@@ -61,20 +72,23 @@ class GAController(GameController):
         if last_move is not None:
             if last_move == Vector(0, -1):  # Last move was up
                 self.action_space = (Vector(-1, 0), Vector(1, 0), Vector(0, -1))  # Left, right, straight
+                self.moves['up'] += 1
                 print("last move up")
             elif last_move == Vector(0, 1):  # Last move was down
                 self.action_space = (Vector(1, 0), Vector(-1, 0), Vector(0, 1))  # Right, left, straight
+                self.moves['down'] += 1
                 print("last move down")
             elif last_move == Vector(-1, 0):  # Last move was left
+                self.moves['left'] += 1
                 self.action_space = (Vector(0, -1), Vector(0, 1), Vector(-1, 0))  # Straight, up, down
                 print("last move left")
             elif last_move == Vector(1, 0):  # Last move was right
                 self.action_space = (Vector(0, 1), Vector(0, -1), Vector(1, 0))  # Straight, down, up
+                self.moves['right'] += 1
                 print("last move right")
 
 
         obs = (dn, de, ds, dw, dfx, dfy, s)
-        print(obs)
 
         # action space
         next_move = self.action_space[self.model.action(obs)]

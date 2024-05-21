@@ -15,6 +15,7 @@ class SnakeGame:
         self.step = 0
         self.score = 0
         self.death = 0
+        self.without_food = 0
         self.result = result
 
     def add_to_result(self, value, target):
@@ -31,24 +32,28 @@ class SnakeGame:
             next_move = self.controller.update()
             if next_move: self.snake.v = next_move
             self.snake.move()
+            self.snake.moves_without_food += 1
             self.step += 1
             if not self.snake.p.within(self.grid):
                 running = False
                 message = 'Game over! You crashed into the wall!'
-                self.score += 1
-                self.score += 1
-                self.score += 1
+                self.death += 1
             if self.snake.cross_own_tail:
                 running = False
                 message = 'Game over! You hit your own tail!'
-                self.score += 1
-                self.score += 1
-                self.score += 1
+                self.death += 1
             if self.snake.p == self.food.p:
                 self.snake.add_score()
                 self.food = Food(game=self)
                 self.score += 1
-        print(f'{message} ... Score: {self.snake.score}')
+            if self.snake.moves_without_food > self.snake.max_without_food:
+                self.snake.score = 0
+                running = False
+                self.death += 1
+                self.without_food +=1
+                # self.snake.moves_without_food = 0
+                message = 'Game over! Took too many moves without eating!'
+        # print(f'{message} ... Score: {self.snake.score}')
 
 
 class Food:
@@ -65,6 +70,8 @@ class Snake:
         self.body = deque()
         self.body.append(Vector.random_within(self.game.grid))
         self.last_move = Vector(0, 0)
+        self.moves_without_food = 0
+        self.max_without_food = 300
 
     def move(self):
         self.p = self.p + self.v
