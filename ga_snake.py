@@ -24,7 +24,7 @@ class GeneticAlgorithm:
             controller = GAController(game)
             game.run()
             self.models.append(controller.model)
-        print(len(self.population))
+        print(len(self.models))
 
 
     def evolve(self):
@@ -32,15 +32,20 @@ class GeneticAlgorithm:
 
         for gen in range(self.generations):
             for model in self.models:
-                game = SnakeGame()
                 step = 0
-                while step < 2500:
+                result = {"step":0, "score":0,"death":0}
+                while result['step'] < 50:
+                    game = SnakeGame()
                     controller = GAController(game, model)
                     game.run()
-                    step = game.step
+                    result['step'] += game.step
+                    result['score'] += game.score
+                    result['death'] += game.score
+                controller.result = result
                 population.append(controller)
                 print("population size",len(population))
-                ranked = self.rank_fitness(population)
+            ranked = self.rank_fitness(population)
+            self.print_fitness(ranked)
 
 
 
@@ -55,4 +60,4 @@ class GeneticAlgorithm:
 if __name__ == '__main__':
     ga=GeneticAlgorithm(population_size=10,generations=10,keep_ratio=0.2,mutation=0.05)
     ga.initialize_population()
-    ga.evolve
+    ga.evolve()

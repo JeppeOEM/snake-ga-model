@@ -15,6 +15,7 @@ class GAController(GameController):
         self.death = 0
         self.step = 0
         self.score = 0
+        self.result = {}
         if self.display:
             pygame.init()
             self.screen = pygame.display.set_mode((game.grid.x * game.scale, game.grid.y * game.scale))
@@ -34,7 +35,9 @@ class GAController(GameController):
 
     @property
     def fitness(self):
-        fit = self.game.step
+        step, score, death = self.result.values()
+
+        fit = score/step
         return fit
 
     def update(self) -> Vector:
@@ -71,7 +74,7 @@ class GAController(GameController):
 
 
         obs = (dn, de, ds, dw, dfx, dfy, s)
-
+        print(obs)
 
         # action space
         next_move = self.action_space[self.model.action(obs)]
