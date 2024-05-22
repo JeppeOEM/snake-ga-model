@@ -16,7 +16,7 @@ class GAController(GameController):
         self.step = 0
         self.score = 0
         self.result = {}
-        self.moves = {"right":0,"left":0,"up":0,"down":0}
+        self.moves = {'up': 0, 'down': 0, 'left': 0, 'right': 0}
         if self.display:
             pygame.init()
             self.screen = pygame.display.set_mode((game.grid.x * game.scale, game.grid.y * game.scale))
@@ -36,19 +36,38 @@ class GAController(GameController):
 
     @property
     def fitness(self):
-        step, score, death, without_food, moves = self.result.values()
-        score_weight = 10
+        high_score, step, score, death, death_no_food, exploration,moves_with_out_food, moves = self.result.values()
+        score_weight = 900000
+        penalty=0
         total_moves = sum(moves.values())
         percentage_moves = {key: (value / total_moves) * 100 for key, value in moves.items()}
         for direction, percentage in percentage_moves.items():
-            if percentage > 40:
-                return -1
+            if percentage > 55:
+                penalty = -(900000+death)
 
-        without_food = -20*(without_food)
-        death = -1*(death)
 
-        fit = (score*score_weight)/step
-        fit = fit+death+without_food
+        # exploration = exploration * 0.001
+        # exploration = (exploration / death)
+        # death_no_food = -1000*(death_no_food)
+        # death = -150*(death)
+        # moves_with_out_food = -100*moves_with_out_food
+        # exploration = (exploration / death) * score
+        # print(death)
+        # fit = 0
+        # if score > 0:
+        #     fit = step/(score*score_weight)
+
+        # fit = fit+death+moves_with_out_food
+        # fit = fit+death_no_food
+        # score = score*1000
+        high_score = high_score*10000
+        death = -1*(death*150)
+        moves_with_out_food = -1*(moves_with_out_food*100)
+        death_no_food = -1*(death_no_food*1000)
+        # print(death_no_food)
+
+        fit = high_score+death+moves_with_out_food+death_no_food+penalty
+
         return fit
 
     def update(self) -> Vector:
@@ -73,22 +92,29 @@ class GAController(GameController):
             if last_move == Vector(0, -1):  # Last move was up
                 self.action_space = (Vector(-1, 0), Vector(1, 0), Vector(0, -1))  # Left, right, straight
                 self.moves['up'] += 1
-                print("last move up")
+                # print("last move up")
             elif last_move == Vector(0, 1):  # Last move was down
                 self.action_space = (Vector(1, 0), Vector(-1, 0), Vector(0, 1))  # Right, left, straight
                 self.moves['down'] += 1
-                print("last move down")
+                # print("last move down")
             elif last_move == Vector(-1, 0):  # Last move was left
                 self.moves['left'] += 1
                 self.action_space = (Vector(0, -1), Vector(0, 1), Vector(-1, 0))  # Straight, up, down
-                print("last move left")
+                # print("last move left")
             elif last_move == Vector(1, 0):  # Last move was right
                 self.action_space = (Vector(0, 1), Vector(0, -1), Vector(1, 0))  # Straight, down, up
                 self.moves['right'] += 1
-                print("last move right")
+                # print("last move right")
 
+    # # Threats from borders: 1 if next to border, 0 otherwise
+    #     tn = 1 if self.game.snake.p.y == 0 else 0  # Top border
+    #     te = 1 if self.game.snake.p.x == self.game.grid.x - 1 else 0  # Right border
+    #     ts = 1 if self.game.snake.p.y == self.game.grid.y - 1 else 0  # Bottom border
+    #     tw = 1 if self.game.snake.p.x == 0 else 0  # Left border
 
         obs = (dn, de, ds, dw, dfx, dfy, s)
+
+        # obs = (dn, de, ds, dw, dfx, dfy, s)
 
         # action space
         next_move = self.action_space[self.model.action(obs)]

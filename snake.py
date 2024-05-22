@@ -7,7 +7,13 @@ from game_controller import HumanController
 
 
 class SnakeGame:
-    def __init__(self, xsize: int=30, ysize: int=30, scale: int=15, result=None):
+    def __init__(self,
+                 xsize: int=30,
+                 ysize: int=30,
+                 scale: int=15,
+                 result=None,
+                 accum_step=0,
+                 max_steps_in_game=0):
         self.grid = Vector(xsize, ysize)
         self.scale = scale
         self.snake = Snake(game=self)
@@ -15,8 +21,11 @@ class SnakeGame:
         self.step = 0
         self.score = 0
         self.death = 0
-        self.without_food = 0
+        self.death_no_food = 0
         self.result = result
+        self.exploration = 0
+        self.accum_step = accum_step
+        self.max_steps_in_game = max_steps_in_game
 
     def add_to_result(self, value, target):
 
@@ -24,7 +33,14 @@ class SnakeGame:
         print(current_value)
         setattr(self.result,target,current_value + value)
 
+    def how_many_diffrent_moves(self):
+        # Count how many move directions have been used
+        different_moves = sum(1 for move in self.controller.moves.values() if move > 0)
 
+        # Increment exploration if all directions have been used at least once
+        if different_moves == 4:
+            self.exploration += 1
+        return different_moves
 
     def run(self):
         running = True
@@ -32,8 +48,11 @@ class SnakeGame:
             next_move = self.controller.update()
             if next_move: self.snake.v = next_move
             self.snake.move()
+            self.how_many_diffrent_moves()
             self.snake.moves_without_food += 1
             self.step += 1
+            if self.step + self.accum_step == self.max_steps_in_game:
+                running = False
             if not self.snake.p.within(self.grid):
                 running = False
                 message = 'Game over! You crashed into the wall!'
@@ -45,12 +64,14 @@ class SnakeGame:
             if self.snake.p == self.food.p:
                 self.snake.add_score()
                 self.food = Food(game=self)
+                self.snake.moves_without_food = 0
                 self.score += 1
             if self.snake.moves_without_food > self.snake.max_without_food:
                 self.snake.score = 0
                 running = False
                 self.death += 1
-                self.without_food +=1
+                #death because of no food
+                self.death_no_food +=1
                 # self.snake.moves_without_food = 0
                 message = 'Game over! Took too many moves without eating!'
         # print(f'{message} ... Score: {self.snake.score}')
@@ -71,7 +92,7 @@ class Snake:
         self.body.append(Vector.random_within(self.game.grid))
         self.last_move = Vector(0, 0)
         self.moves_without_food = 0
-        self.max_without_food = 300
+        self.max_without_food = 50
 
     def move(self):
         self.p = self.p + self.v

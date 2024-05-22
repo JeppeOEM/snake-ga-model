@@ -1,0 +1,1260 @@
+##################################################
+Generation: 0
+Controller 1 Fitness = 0, death: 53, step: 1022, score: 1
+Moves: {'up': 20, 'down': 0, 'left': 20, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 59, step: 1002, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 24}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 64, step: 1008, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 9}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 69, step: 1017, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 22}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 47, step: 1015, score: 0
+Moves: {'up': 0, 'down': 15, 'left': 14, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 45, step: 1001, score: 2
+Moves: {'up': 0, 'down': 11, 'left': 10, 'right': 0}
+____________________________________________________________
+LENGHT: 50
+##################################################
+Generation: 1
+Controller 1 Fitness = 0, death: 59, step: 1005, score: 2
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 27}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 64, step: 1001, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 7}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 57, step: 1012, score: 0
+Moves: {'up': 0, 'down': 8, 'left': 8, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 63, step: 1002, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 14}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 56, step: 1020, score: 2
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 27}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 45, step: 1012, score: 1
+Moves: {'up': 0, 'down': 8, 'left': 7, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 2
+Controller 1 Fitness = 0, death: 48, step: 1001, score: 0
+Moves: {'up': 0, 'down': 1, 'left': 1, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 51, step: 1007, score: 0
+Moves: {'up': 0, 'down': 11, 'left': 10, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 59, step: 1000, score: 3
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 24}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 62, step: 1008, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 9}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 69, step: 1003, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 21}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 58, step: 1006, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 25}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 3
+Controller 1 Fitness = -180.0, death: 60, step: 1001, score: 0
+Moves: {'up': 0, 'down': 2, 'left': 1, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 61, step: 1000, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 5}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 60, step: 1021, score: 3
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 26}
+____________________________________________________________
+Controller 4 Fitness = -116.9015748031496, death: 39, step: 1016, score: 2
+Moves: {'up': 0, 'down': 17, 'left': 17, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 52, step: 1007, score: 1
+Moves: {'up': 0, 'down': 16, 'left': 15, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 47, step: 1006, score: 1
+Moves: {'up': 0, 'down': 17, 'left': 16, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 4
+Controller 1 Fitness = 0, death: 63, step: 1005, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 9}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 64, step: 1008, score: 2
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 29}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 65, step: 1017, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 26}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 51, step: 1007, score: 0
+Moves: {'up': 0, 'down': 12, 'left': 12, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 49, step: 1008, score: 1
+Moves: {'up': 0, 'down': 9, 'left': 9, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 43, step: 1003, score: 0
+Moves: {'up': 0, 'down': 22, 'left': 21, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 5
+Controller 1 Fitness = 0, death: 41, step: 1006, score: 0
+Moves: {'up': 0, 'down': 15, 'left': 15, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 46, step: 1021, score: 0
+Moves: {'up': 0, 'down': 13, 'left': 12, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 41, step: 1023, score: 0
+Moves: {'up': 0, 'down': 14, 'left': 13, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 63, step: 1011, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 26}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 53, step: 1009, score: 0
+Moves: {'up': 0, 'down': 11, 'left': 11, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 51, step: 1001, score: 2
+Moves: {'up': 0, 'down': 1, 'left': 0, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 6
+Controller 1 Fitness = 0, death: 46, step: 1012, score: 1
+Moves: {'up': 0, 'down': 13, 'left': 13, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 60, step: 1001, score: 2
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 30}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 43, step: 1035, score: 1
+Moves: {'up': 0, 'down': 21, 'left': 20, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 47, step: 1027, score: 0
+Moves: {'up': 0, 'down': 14, 'left': 13, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 49, step: 1048, score: 1
+Moves: {'up': 0, 'down': 25, 'left': 24, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 44, step: 1037, score: 1
+Moves: {'up': 0, 'down': 19, 'left': 19, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 7
+Controller 1 Fitness = 0, death: 52, step: 1002, score: 0
+Moves: {'up': 0, 'down': 21, 'left': 21, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 47, step: 1000, score: 1
+Moves: {'up': 0, 'down': 11, 'left': 11, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 41, step: 1022, score: 0
+Moves: {'up': 0, 'down': 12, 'left': 11, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 43, step: 1038, score: 2
+Moves: {'up': 0, 'down': 21, 'left': 21, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 56, step: 1005, score: 2
+Moves: {'up': 0, 'down': 7, 'left': 7, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 43, step: 1018, score: 2
+Moves: {'up': 0, 'down': 10, 'left': 10, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 8
+Controller 1 Fitness = 0, death: 46, step: 1003, score: 0
+Moves: {'up': 0, 'down': 4, 'left': 3, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 41, step: 1024, score: 2
+Moves: {'up': 0, 'down': 17, 'left': 16, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 48, step: 1036, score: 1
+Moves: {'up': 0, 'down': 22, 'left': 21, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 49, step: 1019, score: 2
+Moves: {'up': 0, 'down': 10, 'left': 9, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 44, step: 1003, score: 3
+Moves: {'up': 0, 'down': 18, 'left': 18, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 42, step: 1008, score: 1
+Moves: {'up': 0, 'down': 7, 'left': 7, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 9
+Controller 1 Fitness = 0, death: 48, step: 1006, score: 1
+Moves: {'up': 0, 'down': 5, 'left': 5, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 46, step: 1007, score: 1
+Moves: {'up': 0, 'down': 8, 'left': 7, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 48, step: 1020, score: 2
+Moves: {'up': 0, 'down': 24, 'left': 23, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 48, step: 1005, score: 2
+Moves: {'up': 0, 'down': 3, 'left': 3, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 51, step: 1013, score: 1
+Moves: {'up': 0, 'down': 11, 'left': 11, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 44, step: 1000, score: 2
+Moves: {'up': 0, 'down': 9, 'left': 8, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 10
+Controller 1 Fitness = 0, death: 45, step: 1016, score: 0
+Moves: {'up': 0, 'down': 12, 'left': 12, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 52, step: 1004, score: 1
+Moves: {'up': 0, 'down': 7, 'left': 6, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 49, step: 1036, score: 2
+Moves: {'up': 0, 'down': 21, 'left': 21, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 53, step: 1003, score: 0
+Moves: {'up': 0, 'down': 5, 'left': 4, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 50, step: 1035, score: 1
+Moves: {'up': 0, 'down': 27, 'left': 26, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 42, step: 1002, score: 3
+Moves: {'up': 0, 'down': 7, 'left': 6, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 11
+Controller 1 Fitness = 0, death: 45, step: 1007, score: 2
+Moves: {'up': 0, 'down': 22, 'left': 21, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 50, step: 1019, score: 0
+Moves: {'up': 0, 'down': 21, 'left': 20, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 49, step: 1006, score: 1
+Moves: {'up': 0, 'down': 3, 'left': 3, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 55, step: 1009, score: 1
+Moves: {'up': 0, 'down': 8, 'left': 8, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 37, step: 1003, score: 2
+Moves: {'up': 0, 'down': 14, 'left': 13, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 53, step: 1007, score: 0
+Moves: {'up': 0, 'down': 12, 'left': 12, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 12
+Controller 1 Fitness = 0, death: 46, step: 1009, score: 1
+Moves: {'up': 0, 'down': 7, 'left': 7, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 41, step: 1019, score: 1
+Moves: {'up': 0, 'down': 19, 'left': 18, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 47, step: 1005, score: 0
+Moves: {'up': 0, 'down': 21, 'left': 21, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 51, step: 1009, score: 1
+Moves: {'up': 0, 'down': 15, 'left': 14, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 50, step: 1002, score: 0
+Moves: {'up': 0, 'down': 16, 'left': 15, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 51, step: 1020, score: 1
+Moves: {'up': 0, 'down': 17, 'left': 16, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 13
+Controller 1 Fitness = 0, death: 52, step: 1012, score: 2
+Moves: {'up': 0, 'down': 7, 'left': 6, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 47, step: 1003, score: 0
+Moves: {'up': 0, 'down': 14, 'left': 14, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 44, step: 1010, score: 3
+Moves: {'up': 0, 'down': 18, 'left': 17, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 40, step: 1025, score: 2
+Moves: {'up': 0, 'down': 27, 'left': 27, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 49, step: 1026, score: 1
+Moves: {'up': 0, 'down': 18, 'left': 18, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 53, step: 1027, score: 1
+Moves: {'up': 0, 'down': 14, 'left': 13, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 14
+Controller 1 Fitness = 0, death: 41, step: 1000, score: 0
+Moves: {'up': 0, 'down': 6, 'left': 5, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 48, step: 1026, score: 0
+Moves: {'up': 0, 'down': 15, 'left': 15, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 51, step: 1004, score: 1
+Moves: {'up': 0, 'down': 21, 'left': 20, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 60, step: 1008, score: 1
+Moves: {'up': 0, 'down': 8, 'left': 8, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 34, step: 1001, score: 0
+Moves: {'up': 0, 'down': 22, 'left': 21, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 39, step: 1016, score: 1
+Moves: {'up': 0, 'down': 12, 'left': 12, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 15
+Controller 1 Fitness = 0, death: 50, step: 1026, score: 0
+Moves: {'up': 0, 'down': 14, 'left': 13, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 58, step: 1042, score: 2
+Moves: {'up': 0, 'down': 24, 'left': 24, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 56, step: 1001, score: 1
+Moves: {'up': 0, 'down': 13, 'left': 13, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 50, step: 1021, score: 0
+Moves: {'up': 0, 'down': 21, 'left': 20, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 47, step: 1030, score: 0
+Moves: {'up': 0, 'down': 17, 'left': 17, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 47, step: 1029, score: 2
+Moves: {'up': 0, 'down': 15, 'left': 14, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 16
+Controller 1 Fitness = 0, death: 56, step: 1037, score: 1
+Moves: {'up': 0, 'down': 27, 'left': 26, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 43, step: 1001, score: 0
+Moves: {'up': 0, 'down': 11, 'left': 11, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 46, step: 1015, score: 0
+Moves: {'up': 0, 'down': 17, 'left': 17, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 49, step: 1005, score: 1
+Moves: {'up': 0, 'down': 15, 'left': 14, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 38, step: 1013, score: 2
+Moves: {'up': 0, 'down': 25, 'left': 24, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 50, step: 1005, score: 1
+Moves: {'up': 0, 'down': 21, 'left': 21, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 17
+Controller 1 Fitness = -182.95054401582593, death: 61, step: 1011, score: 1
+Moves: {'up': 0, 'down': 10, 'left': 9, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = -164.9000999000999, death: 55, step: 1001, score: 2
+Moves: {'up': 0, 'down': 2, 'left': 1, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 59, step: 1019, score: 0
+Moves: {'up': 0, 'down': 16, 'left': 15, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = -152.95102840352595, death: 51, step: 1021, score: 1
+Moves: {'up': 0, 'down': 12, 'left': 12, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = -146.90059642147116, death: 49, step: 1006, score: 2
+Moves: {'up': 0, 'down': 13, 'left': 12, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = -176.95083579154377, death: 59, step: 1017, score: 1
+Moves: {'up': 0, 'down': 10, 'left': 9, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 18
+Controller 1 Fitness = 0, death: 48, step: 1002, score: 0
+Moves: {'up': 0, 'down': 2, 'left': 1, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 46, step: 1003, score: 0
+Moves: {'up': 0, 'down': 6, 'left': 6, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 42, step: 1003, score: 1
+Moves: {'up': 0, 'down': 18, 'left': 17, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 44, step: 1020, score: 0
+Moves: {'up': 0, 'down': 17, 'left': 16, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 44, step: 1037, score: 1
+Moves: {'up': 0, 'down': 23, 'left': 22, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 51, step: 1008, score: 0
+Moves: {'up': 0, 'down': 11, 'left': 10, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 19
+Controller 1 Fitness = 0, death: 41, step: 1002, score: 1
+Moves: {'up': 0, 'down': 8, 'left': 8, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 44, step: 1007, score: 1
+Moves: {'up': 0, 'down': 7, 'left': 7, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 49, step: 1001, score: 2
+Moves: {'up': 0, 'down': 3, 'left': 2, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 48, step: 1015, score: 4
+Moves: {'up': 0, 'down': 18, 'left': 18, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 45, step: 1001, score: 2
+Moves: {'up': 0, 'down': 12, 'left': 12, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 40, step: 1006, score: 1
+Moves: {'up': 0, 'down': 7, 'left': 7, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 20
+Controller 1 Fitness = 0, death: 49, step: 1000, score: 0
+Moves: {'up': 0, 'down': 7, 'left': 7, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 46, step: 1011, score: 0
+Moves: {'up': 0, 'down': 11, 'left': 11, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 48, step: 1002, score: 2
+Moves: {'up': 0, 'down': 13, 'left': 12, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 45, step: 1000, score: 0
+Moves: {'up': 0, 'down': 14, 'left': 13, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 49, step: 1032, score: 2
+Moves: {'up': 0, 'down': 22, 'left': 21, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 43, step: 1011, score: 1
+Moves: {'up': 0, 'down': 30, 'left': 22, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 21
+Controller 1 Fitness = -152.85279685966634, death: 51, step: 1019, score: 3
+Moves: {'up': 0, 'down': 17, 'left': 16, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = -143.80217606330365, death: 48, step: 1011, score: 4
+Moves: {'up': 0, 'down': 7, 'left': 7, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = -137.95159728944822, death: 46, step: 1033, score: 1
+Moves: {'up': 0, 'down': 24, 'left': 23, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = -146.9526515151515, death: 49, step: 1056, score: 1
+Moves: {'up': 0, 'down': 30, 'left': 29, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = -149.853515625, death: 50, step: 1024, score: 3
+Moves: {'up': 0, 'down': 15, 'left': 15, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = -153.0, death: 51, step: 1003, score: 0
+Moves: {'up': 0, 'down': 9, 'left': 9, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 22
+Controller 1 Fitness = -131.95183044315993, death: 44, step: 1038, score: 1
+Moves: {'up': 0, 'down': 27, 'left': 27, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = -137.9, death: 46, step: 1000, score: 2
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 24}
+____________________________________________________________
+Controller 3 Fitness = -170.8546511627907, death: 57, step: 1032, score: 3
+Moves: {'up': 0, 'down': 23, 'left': 23, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = -135.0, death: 45, step: 1013, score: 0
+Moves: {'up': 0, 'down': 17, 'left': 16, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = -164.95083579154377, death: 55, step: 1017, score: 1
+Moves: {'up': 0, 'down': 17, 'left': 17, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = -161.9009900990099, death: 54, step: 1010, score: 2
+Moves: {'up': 0, 'down': 15, 'left': 15, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 23
+Controller 1 Fitness = -131.95009980039922, death: 44, step: 1002, score: 1
+Moves: {'up': 0, 'down': 12, 'left': 12, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = -155.901185770751, death: 52, step: 1012, score: 2
+Moves: {'up': 0, 'down': 8, 'left': 7, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = -152.95049504950495, death: 51, step: 1010, score: 1
+Moves: {'up': 0, 'down': 14, 'left': 14, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = -140.853515625, death: 47, step: 1024, score: 3
+Moves: {'up': 0, 'down': 17, 'left': 16, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = -158.9014778325123, death: 53, step: 1015, score: 2
+Moves: {'up': 0, 'down': 14, 'left': 14, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = -164.90243902439025, death: 55, step: 1025, score: 2
+Moves: {'up': 0, 'down': 13, 'left': 13, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 24
+Controller 1 Fitness = 0, death: 66, step: 1015, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 16}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 78, step: 1015, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 21}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 75, step: 1011, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 21}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 73, step: 1002, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 9}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 80, step: 1000, score: 0
+Moves: {'up': 0, 'down': 8, 'left': 7, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 74, step: 1000, score: 0
+Moves: {'up': 0, 'down': 2, 'left': 1, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 25
+Controller 1 Fitness = 0, death: 80, step: 1011, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 14}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 72, step: 1000, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 6}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 74, step: 1020, score: 0
+Moves: {'up': 0, 'down': 13, 'left': 12, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 78, step: 1010, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 17}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 74, step: 1011, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 27}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 75, step: 1024, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 26}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 26
+Controller 1 Fitness = 0, death: 47, step: 1044, score: 0
+Moves: {'up': 0, 'down': 27, 'left': 26, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 46, step: 1011, score: 0
+Moves: {'up': 0, 'down': 7, 'left': 7, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 42, step: 1024, score: 3
+Moves: {'up': 0, 'down': 13, 'left': 12, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 46, step: 1004, score: 1
+Moves: {'up': 0, 'down': 14, 'left': 14, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 45, step: 1008, score: 2
+Moves: {'up': 0, 'down': 7, 'left': 7, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 50, step: 1005, score: 1
+Moves: {'up': 0, 'down': 13, 'left': 13, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 27
+Controller 1 Fitness = -132.0, death: 44, step: 1033, score: 0
+Moves: {'up': 0, 'down': 18, 'left': 17, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = -162.0, death: 54, step: 1028, score: 0
+Moves: {'up': 0, 'down': 23, 'left': 22, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = -191.90253411306043, death: 64, step: 1026, score: 2
+Moves: {'up': 0, 'down': 13, 'left': 13, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = -158.95034756703078, death: 53, step: 1007, score: 1
+Moves: {'up': 0, 'down': 16, 'left': 15, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = -159.0, death: 53, step: 1007, score: 0
+Moves: {'up': 0, 'down': 10, 'left': 9, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = -152.95102840352595, death: 51, step: 1021, score: 1
+Moves: {'up': 0, 'down': 16, 'left': 20, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 28
+Controller 1 Fitness = 0, death: 47, step: 1012, score: 0
+Moves: {'up': 0, 'down': 13, 'left': 13, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 46, step: 1000, score: 0
+Moves: {'up': 0, 'down': 17, 'left': 16, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 39, step: 1026, score: 0
+Moves: {'up': 0, 'down': 23, 'left': 23, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 44, step: 1008, score: 2
+Moves: {'up': 0, 'down': 18, 'left': 17, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 47, step: 1034, score: 1
+Moves: {'up': 0, 'down': 23, 'left': 22, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 47, step: 1028, score: 0
+Moves: {'up': 0, 'down': 16, 'left': 15, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 29
+Controller 1 Fitness = -197.85207100591717, death: 66, step: 1014, score: 3
+Moves: {'up': 0, 'down': 15, 'left': 14, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = -167.9000999000999, death: 56, step: 1001, score: 2
+Moves: {'up': 0, 'down': 1, 'left': 0, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = -176.9009900990099, death: 59, step: 1010, score: 2
+Moves: {'up': 0, 'down': 7, 'left': 7, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = -144.0, death: 48, step: 1021, score: 0
+Moves: {'up': 0, 'down': 13, 'left': 13, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = -173.90089197224975, death: 58, step: 1009, score: 2
+Moves: {'up': 0, 'down': 9, 'left': 9, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = -176.9001996007984, death: 59, step: 1002, score: 2
+Moves: {'up': 1, 'down': 0, 'left': 0, 'right': 15}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 30
+Controller 1 Fitness = 0, death: 68, step: 1015, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 22}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 68, step: 1008, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 16}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 69, step: 1004, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 22}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 66, step: 1006, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 17}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 74, step: 1001, score: 0
+Moves: {'up': 0, 'down': 7, 'left': 6, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 77, step: 1007, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 17}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 31
+Controller 1 Fitness = 0, death: 59, step: 1006, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 7}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 70, step: 1010, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 16}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 62, step: 1012, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 24}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 68, step: 1001, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 10}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 62, step: 1006, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 17}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 69, step: 1004, score: 2
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 11}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 32
+Controller 1 Fitness = 0, death: 67, step: 1013, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 25}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 76, step: 1015, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 28}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 83, step: 1018, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 21}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 75, step: 1008, score: 2
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 9}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 70, step: 1001, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 2}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 63, step: 1003, score: 0
+Moves: {'up': 0, 'down': 6, 'left': 5, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 33
+Controller 1 Fitness = 0, death: 58, step: 1000, score: 1
+Moves: {'up': 0, 'down': 2, 'left': 22, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 57, step: 1016, score: 1
+Moves: {'up': 1, 'down': 0, 'left': 0, 'right': 18}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 55, step: 1026, score: 0
+Moves: {'up': 1, 'down': 0, 'left': 0, 'right': 28}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 58, step: 1007, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 8}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 57, step: 1001, score: 0
+Moves: {'up': 1, 'down': 0, 'left': 0, 'right': 6}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 59, step: 1004, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 4}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 34
+Controller 1 Fitness = 0, death: 61, step: 1014, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 21}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 53, step: 1006, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 30}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 56, step: 1009, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 14}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 60, step: 1012, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 19}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 61, step: 1001, score: 0
+Moves: {'up': 6, 'down': 0, 'left': 0, 'right': 9}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 63, step: 1007, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 11}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 35
+Controller 1 Fitness = -191.90319457889643, death: 64, step: 1033, score: 2
+Moves: {'up': 0, 'down': 10, 'left': 27, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = -149.9003984063745, death: 50, step: 1004, score: 2
+Moves: {'up': 0, 'down': 21, 'left': 20, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = -179.95019920318725, death: 60, step: 1004, score: 1
+Moves: {'up': 0, 'down': 4, 'left': 3, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = -161.90224828934507, death: 54, step: 1023, score: 2
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 28}
+____________________________________________________________
+Controller 5 Fitness = -161.90049751243782, death: 54, step: 1005, score: 2
+Moves: {'up': 1, 'down': 0, 'left': 0, 'right': 5}
+____________________________________________________________
+Controller 6 Fitness = -152.9003984063745, death: 51, step: 1004, score: 2
+Moves: {'up': 0, 'down': 13, 'left': 13, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 36
+Controller 1 Fitness = -128.85422740524783, death: 43, step: 1029, score: 3
+Moves: {'up': 3, 'down': 21, 'left': 24, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = -156.0, death: 52, step: 1028, score: 0
+Moves: {'up': 2, 'down': 14, 'left': 13, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = -137.9512195121951, death: 46, step: 1025, score: 1
+Moves: {'up': 0, 'down': 26, 'left': 26, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = -134.95009980039922, death: 45, step: 1002, score: 1
+Moves: {'up': 0, 'down': 5, 'left': 4, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = -140.9505928853755, death: 47, step: 1012, score: 1
+Moves: {'up': 0, 'down': 20, 'left': 10, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = -156.0, death: 52, step: 1002, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 6}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 37
+Controller 1 Fitness = -167.95039682539684, death: 56, step: 1008, score: 1
+Moves: {'up': 0, 'down': 18, 'left': 1, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = -146.9016715830875, death: 49, step: 1017, score: 2
+Moves: {'up': 0, 'down': 14, 'left': 13, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = -143.95073891625617, death: 48, step: 1015, score: 1
+Moves: {'up': 0, 'down': 9, 'left': 9, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = -137.90128331688055, death: 46, step: 1013, score: 2
+Moves: {'up': 8, 'down': 14, 'left': 8, 'right': 14}
+____________________________________________________________
+Controller 5 Fitness = -131.95073891625617, death: 44, step: 1015, score: 1
+Moves: {'up': 8, 'down': 0, 'left': 0, 'right': 12}
+____________________________________________________________
+Controller 6 Fitness = -140.9505928853755, death: 47, step: 1012, score: 1
+Moves: {'up': 0, 'down': 18, 'left': 17, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 38
+Controller 1 Fitness = -191.95093228655546, death: 64, step: 1019, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 21}
+____________________________________________________________
+Controller 2 Fitness = -164.85133795837461, death: 55, step: 1009, score: 3
+Moves: {'up': 0, 'down': 21, 'left': 20, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = -176.95049504950495, death: 59, step: 1010, score: 1
+Moves: {'up': 0, 'down': 16, 'left': 15, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = -170.95029821073558, death: 57, step: 1006, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 14}
+____________________________________________________________
+Controller 5 Fitness = -180.0, death: 60, step: 1000, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 16}
+____________________________________________________________
+Controller 6 Fitness = -153.0, death: 51, step: 1022, score: 0
+Moves: {'up': 0, 'down': 23, 'left': 22, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 39
+Controller 1 Fitness = -143.95034756703078, death: 48, step: 1007, score: 1
+Moves: {'up': 0, 'down': 27, 'left': 8, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = -185.9512670565302, death: 62, step: 1026, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 29}
+____________________________________________________________
+Controller 3 Fitness = -186.0, death: 62, step: 1003, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 10}
+____________________________________________________________
+Controller 4 Fitness = -198.0, death: 66, step: 1000, score: 0
+Moves: {'up': 0, 'down': 2, 'left': 1, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = -167.95009980039922, death: 56, step: 1002, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 13}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 55, step: 1013, score: 1
+Moves: {'up': 0, 'down': 13, 'left': 0, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 40
+Controller 1 Fitness = -146.9512670565302, death: 49, step: 1026, score: 1
+Moves: {'up': 0, 'down': 15, 'left': 14, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 42, step: 1013, score: 3
+Moves: {'up': 2, 'down': 7, 'left': 7, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = -108.0, death: 36, step: 1021, score: 0
+Moves: {'up': 3, 'down': 12, 'left': 2, 'right': 14}
+____________________________________________________________
+Controller 4 Fitness = -143.85177865612647, death: 48, step: 1012, score: 3
+Moves: {'up': 3, 'down': 5, 'left': 3, 'right': 6}
+____________________________________________________________
+Controller 5 Fitness = -161.95014955134596, death: 54, step: 1003, score: 1
+Moves: {'up': 0, 'down': 7, 'left': 6, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = -141.0, death: 47, step: 1005, score: 0
+Moves: {'up': 0, 'down': 11, 'left': 10, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 41
+Controller 1 Fitness = -100.0, death: 20, step: 1005, score: 0
+Moves: {'up': 1, 'down': 6, 'left': 0, 'right': 7}
+____________________________________________________________
+Controller 2 Fitness = -94.95039682539682, death: 25, step: 1008, score: 1
+Moves: {'up': 14, 'down': 0, 'left': 0, 'right': 15}
+____________________________________________________________
+Controller 3 Fitness = -134.0, death: 38, step: 1101, score: 0
+Moves: {'up': 79, 'down': 71, 'left': 79, 'right': 71}
+____________________________________________________________
+Controller 4 Fitness = -123.0, death: 41, step: 1005, score: 0
+Moves: {'up': 13, 'down': 0, 'left': 0, 'right': 11}
+____________________________________________________________
+Controller 5 Fitness = -129.0, death: 43, step: 1005, score: 0
+Moves: {'up': 0, 'down': 10, 'left': 5, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = -152.95029821073558, death: 51, step: 1006, score: 1
+Moves: {'up': 0, 'down': 6, 'left': 5, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 42
+Controller 1 Fitness = -146.95009980039922, death: 49, step: 1002, score: 1
+Moves: {'up': 1, 'down': 4, 'left': 0, 'right': 3}
+____________________________________________________________
+Controller 2 Fitness = -132.0, death: 44, step: 1013, score: 0
+Moves: {'up': 3, 'down': 8, 'left': 3, 'right': 8}
+____________________________________________________________
+Controller 3 Fitness = -164.0, death: 48, step: 1249, score: 0
+Moves: {'up': 78, 'down': 72, 'left': 78, 'right': 72}
+____________________________________________________________
+Controller 4 Fitness = -137.85, death: 46, step: 1000, score: 3
+Moves: {'up': 0, 'down': 1, 'left': 0, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = -125.85133795837463, death: 42, step: 1009, score: 3
+Moves: {'up': 0, 'down': 16, 'left': 15, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = -143.95064165844028, death: 48, step: 1013, score: 1
+Moves: {'up': 1, 'down': 6, 'left': 1, 'right': 6}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 43
+Controller 1 Fitness = -144.0, death: 48, step: 1010, score: 0
+Moves: {'up': 0, 'down': 8, 'left': 7, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = -137.90356798457088, death: 46, step: 1037, score: 2
+Moves: {'up': 0, 'down': 27, 'left': 26, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = -100.0, death: 20, step: 1018, score: 0
+Moves: {'up': 0, 'down': 12, 'left': 11, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = -124.95136186770428, death: 35, step: 1028, score: 1
+Moves: {'up': 73, 'down': 77, 'left': 76, 'right': 74}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 44, step: 1009, score: 0
+Moves: {'up': 0, 'down': 8, 'left': 7, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = -152.95064165844028, death: 51, step: 1013, score: 1
+Moves: {'up': 0, 'down': 9, 'left': 8, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 44
+Controller 1 Fitness = -119.0, death: 33, step: 1010, score: 0
+Moves: {'up': 0, 'down': 11, 'left': 10, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = -141.0, death: 47, step: 1012, score: 0
+Moves: {'up': 0, 'down': 16, 'left': 12, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 50, step: 1010, score: 0
+Moves: {'up': 0, 'down': 14, 'left': 10, 'right': 1}
+____________________________________________________________
+Controller 4 Fitness = -130.95078740157481, death: 37, step: 1016, score: 1
+Moves: {'up': 10, 'down': 1, 'left': 0, 'right': 10}
+____________________________________________________________
+Controller 5 Fitness = -122.95054401582591, death: 41, step: 1011, score: 1
+Moves: {'up': 0, 'down': 6, 'left': 6, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = -164.95049504950495, death: 55, step: 1010, score: 1
+Moves: {'up': 0, 'down': 13, 'left': 12, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 45
+Controller 1 Fitness = -110.95014955134596, death: 37, step: 1003, score: 1
+Moves: {'up': 19, 'down': 0, 'left': 0, 'right': 22}
+____________________________________________________________
+Controller 2 Fitness = -147.0, death: 49, step: 1014, score: 0
+Moves: {'up': 0, 'down': 20, 'left': 19, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = -107.9, death: 36, step: 1000, score: 2
+Moves: {'up': 0, 'down': 23, 'left': 23, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = -146.9043062200957, death: 49, step: 1045, score: 2
+Moves: {'up': 0, 'down': 26, 'left': 25, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = -113.95073891625616, death: 38, step: 1015, score: 1
+Moves: {'up': 0, 'down': 21, 'left': 21, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = -135.0, death: 45, step: 1011, score: 0
+Moves: {'up': 0, 'down': 7, 'left': 6, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 46
+Controller 1 Fitness = -122.95201535508637, death: 41, step: 1042, score: 1
+Moves: {'up': 0, 'down': 25, 'left': 21, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = -147.0, death: 49, step: 1024, score: 0
+Moves: {'up': 0, 'down': 22, 'left': 21, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = -149.80353634577602, death: 50, step: 1018, score: 4
+Moves: {'up': 0, 'down': 11, 'left': 10, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = -137.90186457311088, death: 46, step: 1019, score: 2
+Moves: {'up': 0, 'down': 24, 'left': 24, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = -126.0, death: 42, step: 1006, score: 0
+Moves: {'up': 0, 'down': 19, 'left': 15, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 48, step: 1011, score: 2
+Moves: {'up': 0, 'down': 14, 'left': 14, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 47
+Controller 1 Fitness = -128.95014955134596, death: 43, step: 1003, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 26}
+____________________________________________________________
+Controller 2 Fitness = -143.90108803165182, death: 48, step: 1011, score: 2
+Moves: {'up': 0, 'down': 28, 'left': 27, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = -167.95183044315993, death: 56, step: 1038, score: 1
+Moves: {'up': 0, 'down': 25, 'left': 24, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 43, step: 1009, score: 0
+Moves: {'up': 0, 'down': 19, 'left': 11, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 42, step: 1038, score: 3
+Moves: {'up': 0, 'down': 20, 'left': 19, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 46, step: 1000, score: 0
+Moves: {'up': 0, 'down': 16, 'left': 6, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 48
+Controller 1 Fitness = -98.95069033530572, death: 33, step: 1014, score: 1
+Moves: {'up': 0, 'down': 16, 'left': 15, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = -102.0, death: 34, step: 1001, score: 0
+Moves: {'up': 21, 'down': 11, 'left': 11, 'right': 20}
+____________________________________________________________
+Controller 3 Fitness = -119.9016715830875, death: 40, step: 1017, score: 2
+Moves: {'up': 0, 'down': 24, 'left': 14, 'right': 10}
+____________________________________________________________
+Controller 4 Fitness = -116.90310077519379, death: 39, step: 1032, score: 2
+Moves: {'up': 0, 'down': 17, 'left': 12, 'right': 5}
+____________________________________________________________
+Controller 5 Fitness = -122.95107632093934, death: 41, step: 1022, score: 1
+Moves: {'up': 0, 'down': 24, 'left': 19, 'right': 5}
+____________________________________________________________
+Controller 6 Fitness = -104.95, death: 35, step: 1000, score: 1
+Moves: {'up': 24, 'down': 0, 'left': 5, 'right': 19}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 49
+Controller 1 Fitness = -107.90128331688055, death: 36, step: 1013, score: 2
+Moves: {'up': 0, 'down': 13, 'left': 12, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = -93.0, death: 31, step: 1012, score: 0
+Moves: {'up': 5, 'down': 11, 'left': 4, 'right': 11}
+____________________________________________________________
+Controller 3 Fitness = -97.9514091350826, death: 26, step: 1029, score: 1
+Moves: {'up': 9, 'down': 9, 'left': 8, 'right': 9}
+____________________________________________________________
+Controller 4 Fitness = -86.95024875621891, death: 29, step: 1005, score: 1
+Moves: {'up': 3, 'down': 0, 'left': 3, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = -110.90059642147118, death: 37, step: 1006, score: 2
+Moves: {'up': 0, 'down': 24, 'left': 17, 'right': 7}
+____________________________________________________________
+Controller 6 Fitness = -97.95633187772926, death: 26, step: 1145, score: 1
+Moves: {'up': 75, 'down': 75, 'left': 75, 'right': 75}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 50
+Controller 1 Fitness = -138.0, death: 46, step: 1007, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 20}
+____________________________________________________________
+Controller 2 Fitness = -152.85029940119762, death: 51, step: 1002, score: 3
+Moves: {'up': 0, 'down': 6, 'left': 5, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = -146.95034756703078, death: 49, step: 1007, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 19}
+____________________________________________________________
+Controller 4 Fitness = -149.95093228655546, death: 50, step: 1019, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 27}
+____________________________________________________________
+Controller 5 Fitness = -162.0, death: 54, step: 1021, score: 0
+Moves: {'up': 2, 'down': 9, 'left': 1, 'right': 9}
+____________________________________________________________
+Controller 6 Fitness = -135.0, death: 45, step: 1009, score: 0
+Moves: {'up': 0, 'down': 17, 'left': 16, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 51
+Controller 1 Fitness = -117.0, death: 39, step: 1041, score: 0
+Moves: {'up': 8, 'down': 13, 'left': 8, 'right': 12}
+____________________________________________________________
+Controller 2 Fitness = -110.95169082125604, death: 37, step: 1035, score: 1
+Moves: {'up': 11, 'down': 12, 'left': 8, 'right': 14}
+____________________________________________________________
+Controller 3 Fitness = -88.95238095238095, death: 23, step: 1050, score: 1
+Moves: {'up': 10, 'down': 23, 'left': 10, 'right': 22}
+____________________________________________________________
+Controller 4 Fitness = -102.0, death: 34, step: 1035, score: 0
+Moves: {'up': 16, 'down': 17, 'left': 16, 'right': 17}
+____________________________________________________________
+Controller 5 Fitness = -83.951171875, death: 28, step: 1024, score: 1
+Moves: {'up': 20, 'down': 14, 'left': 22, 'right': 11}
+____________________________________________________________
+Controller 6 Fitness = -99.0, death: 33, step: 1002, score: 0
+Moves: {'up': 2, 'down': 0, 'left': 2, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 52
+Controller 1 Fitness = -103.90328820116054, death: 28, step: 1034, score: 2
+Moves: {'up': 0, 'down': 28, 'left': 28, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = -89.0, death: 23, step: 1048, score: 0
+Moves: {'up': 18, 'down': 14, 'left': 1, 'right': 30}
+____________________________________________________________
+Controller 3 Fitness = -104.90243902439025, death: 35, step: 1025, score: 2
+Moves: {'up': 0, 'down': 14, 'left': 14, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = -100.9009900990099, death: 27, step: 1010, score: 2
+Moves: {'up': 12, 'down': 18, 'left': 11, 'right': 18}
+____________________________________________________________
+Controller 5 Fitness = -118.91266375545851, death: 33, step: 1145, score: 2
+Moves: {'up': 75, 'down': 75, 'left': 75, 'right': 75}
+____________________________________________________________
+Controller 6 Fitness = -93.95348837209303, death: 18, step: 1075, score: 1
+Moves: {'up': 75, 'down': 75, 'left': 75, 'right': 75}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 53
+Controller 1 Fitness = -168.0, death: 56, step: 1016, score: 0
+Moves: {'up': 6, 'down': 11, 'left': 5, 'right': 12}
+____________________________________________________________
+Controller 2 Fitness = -161.90328820116054, death: 54, step: 1034, score: 2
+Moves: {'up': 10, 'down': 13, 'left': 23, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = -170.9502487562189, death: 57, step: 1005, score: 1
+Moves: {'up': 0, 'down': 5, 'left': 4, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = -165.0, death: 55, step: 1031, score: 0
+Moves: {'up': 4, 'down': 13, 'left': 4, 'right': 12}
+____________________________________________________________
+Controller 5 Fitness = -146.95004995004996, death: 49, step: 1001, score: 1
+Moves: {'up': 1, 'down': 8, 'left': 1, 'right': 7}
+____________________________________________________________
+Controller 6 Fitness = -129.0, death: 43, step: 1020, score: 0
+Moves: {'up': 21, 'down': 0, 'left': 0, 'right': 8}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 54
+Controller 1 Fitness = -155.95029821073558, death: 52, step: 1006, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 8}
+____________________________________________________________
+Controller 2 Fitness = -128.95014955134596, death: 43, step: 1003, score: 1
+Moves: {'up': 1, 'down': 10, 'left': 1, 'right': 10}
+____________________________________________________________
+Controller 3 Fitness = -152.9014778325123, death: 51, step: 1015, score: 2
+Moves: {'up': 0, 'down': 12, 'left': 12, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = -146.0, death: 42, step: 1024, score: 0
+Moves: {'up': 4, 'down': 14, 'left': 0, 'right': 18}
+____________________________________________________________
+Controller 5 Fitness = -116.0, death: 32, step: 1021, score: 0
+Moves: {'up': 12, 'down': 18, 'left': 11, 'right': 18}
+____________________________________________________________
+Controller 6 Fitness = -155.95083579154377, death: 52, step: 1017, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 20}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 55
+Controller 1 Fitness = -150.0, death: 50, step: 1021, score: 0
+Moves: {'up': 3, 'down': 11, 'left': 3, 'right': 11}
+____________________________________________________________
+Controller 2 Fitness = -143.85148514851485, death: 48, step: 1010, score: 3
+Moves: {'up': 0, 'down': 19, 'left': 0, 'right': 25}
+____________________________________________________________
+Controller 3 Fitness = -137.95, death: 46, step: 1000, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 19}
+____________________________________________________________
+Controller 4 Fitness = -138.0, death: 46, step: 1007, score: 0
+Moves: {'up': 11, 'down': 15, 'left': 22, 'right': 4}
+____________________________________________________________
+Controller 5 Fitness = -149.9001996007984, death: 50, step: 1002, score: 2
+Moves: {'up': 0, 'down': 11, 'left': 9, 'right': 1}
+____________________________________________________________
+Controller 6 Fitness = -156.0, death: 52, step: 1006, score: 0
+Moves: {'up': 0, 'down': 8, 'left': 7, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 56
+Controller 1 Fitness = -173.95054401582593, death: 58, step: 1011, score: 1
+Moves: {'up': 1, 'down': 3, 'left': 0, 'right': 23}
+____________________________________________________________
+Controller 2 Fitness = -176.90079365079364, death: 59, step: 1008, score: 2
+Moves: {'up': 8, 'down': 20, 'left': 8, 'right': 18}
+____________________________________________________________
+Controller 3 Fitness = -171.0, death: 57, step: 1044, score: 0
+Moves: {'up': 10, 'down': 15, 'left': 24, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = -167.95069033530572, death: 56, step: 1014, score: 1
+Moves: {'up': 0, 'down': 8, 'left': 0, 'right': 16}
+____________________________________________________________
+Controller 5 Fitness = -145.95145631067962, death: 42, step: 1030, score: 1
+Moves: {'up': 2, 'down': 14, 'left': 16, 'right': 0}
+____________________________________________________________
+Controller 6 Fitness = -134.90224828934507, death: 45, step: 1023, score: 2
+Moves: {'up': 0, 'down': 15, 'left': 14, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 57
+Controller 1 Fitness = -191.90186457311088, death: 64, step: 1019, score: 2
+Moves: {'up': 4, 'down': 6, 'left': 3, 'right': 7}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 65, step: 1011, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 18}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 64, step: 1015, score: 2
+Moves: {'up': 0, 'down': 11, 'left': 10, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 68, step: 1005, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 9}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 60, step: 1000, score: 3
+Moves: {'up': 5, 'down': 6, 'left': 4, 'right': 7}
+____________________________________________________________
+Controller 6 Fitness = 0, death: 62, step: 1002, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 12}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 58
+Controller 1 Fitness = -239.90138067061145, death: 80, step: 1014, score: 2
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 17}
+____________________________________________________________
+Controller 2 Fitness = 0, death: 73, step: 1010, score: 2
+Moves: {'up': 0, 'down': 9, 'left': 8, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = 0, death: 74, step: 1011, score: 0
+Moves: {'up': 0, 'down': 15, 'left': 15, 'right': 0}
+____________________________________________________________
+Controller 4 Fitness = 0, death: 71, step: 1002, score: 1
+Moves: {'up': 5, 'down': 6, 'left': 11, 'right': 0}
+____________________________________________________________
+Controller 5 Fitness = 0, death: 69, step: 1012, score: 2
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 19}
+____________________________________________________________
+Controller 6 Fitness = -257.95, death: 86, step: 1000, score: 1
+Moves: {'up': 28, 'down': 0, 'left': 3, 'right': 0}
+____________________________________________________________
+LENGHT: 51
+##################################################
+Generation: 59
+Controller 1 Fitness = -173.9505928853755, death: 58, step: 1012, score: 1
+Moves: {'up': 0, 'down': 21, 'left': 20, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = -153.0, death: 51, step: 1025, score: 0
+Moves: {'up': 0, 'down': 17, 'left': 17, 'right': 0}
+____________________________________________________________
+Controller 3 Fitness = -177.0, death: 59, step: 1000, score: 0
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 2}
+____________________________________________________________
+Controller 4 Fitness = -135.0, death: 45, step: 1026, score: 0
+Moves: {'up': 10, 'down': 0, 'left': 0, 'right': 25}
+____________________________________________________________
+Controller 5 Fitness = -164.95004995004996, death: 55, step: 1001, score: 1
+Moves: {'up': 0, 'down': 0, 'left': 0, 'right': 5}
+____________________________________________________________
+Controller 6 Fitness = -167.95, death: 56, step: 1000, score: 1
+Moves: {'up': 0, 'down': 4, 'left': 3, 'right': 0}
+____________________________________________________________
+LENGHT: 51
