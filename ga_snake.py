@@ -4,16 +4,17 @@
 from datetime import datetime
 import os
 import random
+from Fitness import Fitness
 from Result import Result
 from ga_models.ga_simple import SimpleModel
 from snake import SnakeGame
 from ga_controller import GAController
 from collections import Counter
-dims = (7, 9, 15, 3)
+# dims = (7, 9, 15, 3)
 
 
 class GeneticAlgorithm:
-    def __init__(self, population_size=10, generations=2,keep_ratio=0.1, mutation=0.1, max_steps_in_game=1000,verbose=True):
+    def __init__(self, population_size=10, generations=2,keep_ratio=0.1, mutation=0.1, max_steps_in_game=1000,verbose=True, dims = (9, 9, 15, 3), fitness = None):
         self.population_size = population_size
         self.generations = generations
         self.population = []
@@ -23,12 +24,14 @@ class GeneticAlgorithm:
         self.gen_info = []
         self.verbose = verbose
         self.max_steps_in_game = max_steps_in_game
+        self.dims = dims
+        self.fitness = fitness
 
     def initialize_population(self):
 
         for _ in range(self.population_size):
             game = SnakeGame()
-            controller = GAController(game)
+            controller = GAController(game=game,dims=self.dims)
             self.models.append(controller.model)
         print(len(self.models))
 
@@ -40,11 +43,18 @@ class GeneticAlgorithm:
             population = []
             for model in self.models:
                 high_score = 0
-                result = {"high_score":0,"step":0, "score":0,"death":0,"death_no_food":0,"exploration":0,"moves_without_food":0, "moves":{"right":0,"left":0,"up":0,"down":0}}
+                result = {"high_score":0,
+                          "step":0,
+                          "score":0,
+                          "death":0,
+                          "death_no_food":0,
+                          "exploration":0,
+                          "moves_without_food":0,
+                          "moves":{"right":0,"left":0,"up":0,"down":0}}
                 while result['step'] < self.max_steps_in_game:
                     game = SnakeGame(accum_step=result['step'],
                                      max_steps_in_game=self.max_steps_in_game)
-                    controller = GAController(game, model)
+                    controller = GAController(game=game, model=model, dims=self.dims, fitness_function=self.fitness)
                     game.run()
                     if game.score > high_score:
                         high_score = game.score
@@ -138,12 +148,32 @@ class GeneticAlgorithm:
     def final_result(self):
         print("###########FINAL RESULT########")
         self.print_fitness(self.rank_fitness(self.gen_info[-1]))
+
 if __name__ == '__main__':
+    high_score = {
+        'high_score': 10,
+        'step': 20,
+        'score': 30,
+        'death': 1,
+        'death_no_food': 1,
+        'exploration': 0.5,
+        'moves_with_out_food': 2,
+        'moves': 100
+    }
+    step_death = {
+        'step': 10
+    }
+
+
+    fitness = Fitness(method="step_death")
+
     ga=GeneticAlgorithm(population_size=60,
                         generations=200,
                         keep_ratio=0.25,
                         mutation=0.08,
                         max_steps_in_game=700,
+                        dims=(9, 9, 15, 3),
+                        fitness=fitness,
                         verbose=False)
     ga.initialize_population()
     ga.evolve()

@@ -58,15 +58,18 @@ class SnakeGame:
                 running = False
                 message = 'Game over! You crashed into the wall!'
                 self.death += 1
+                pygame.quit()
             if self.snake.cross_own_tail:
                 running = False
                 message = 'Game over! You hit your own tail!'
                 self.death += 1
+                pygame.quit()
             if self.snake.p == self.food.p:
                 self.snake.add_score()
                 self.food = Food(game=self)
                 self.snake.moves_without_food = 0
                 self.score += 1
+
             if self.snake.moves_without_food > self.snake.max_without_food:
                 self.snake.score = 0
                 running = False
@@ -74,6 +77,7 @@ class SnakeGame:
                 #death because of no food
                 self.death_no_food +=1
                 # self.snake.moves_without_food = 0
+                pygame.quit()
                 message = 'Game over! Took too many moves without eating!'
         # print(f'{message} ... Score: {self.snake.score}')
 
@@ -93,7 +97,7 @@ class Snake:
         self.body.append(Vector.random_within(self.game.grid))
         self.last_move = Vector(0, 1)
         self.moves_without_food = 0
-        self.max_without_food = 50
+        self.max_without_food = 200
 
     def move(self):
         self.p = self.p + self.v
