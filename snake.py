@@ -91,7 +91,7 @@ class Snake:
         self.v = Vector(0, 0)
         self.body = deque()
         self.body.append(Vector.random_within(self.game.grid))
-        self.last_move = Vector(0, 0)
+        self.last_move = Vector(0, 1)
         self.moves_without_food = 0
         self.max_without_food = 50
 

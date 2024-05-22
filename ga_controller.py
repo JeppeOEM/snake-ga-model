@@ -11,7 +11,7 @@ class GAController(GameController):
     def __init__(self, game=None, model=None,display=True):
         self.display = display
         self.game = game
-        self.model = model if model else SimpleModel(dims=(11, 9, 15, 3)) # type: ignore
+        self.model = model if model else SimpleModel(dims=(10, 9, 15, 3)) # type: ignore
         self.game.controller = self
         self.action_space = (Vector(0, -1), Vector(0, 1), Vector(1, 0), Vector(-1, 0))
         self.death = 0
@@ -77,7 +77,7 @@ class GAController(GameController):
 
     def update(self) -> Vector:
         # observation space
-        print(self.last_move)
+
         # delta north, east, south, west
         dn = self.game.snake.p.y
         de = self.game.grid.x - self.game.snake.p.x
@@ -101,58 +101,16 @@ class GAController(GameController):
         dist_food = euclidean_distance_to_food / max_distance
         print("norma",dist_food)
         print(euclidean_distance_to_food)
-if last_move is not None:
-    if last_move == Vector(0, -1):  # Last move was up
-        self.action_space = (Vector(-1, 0), Vector(1, 0), Vector(0, -1))  # Left, right, straight
-        self.moves['up'] += 1
-        # Check if left move is next to a border
-        border_left = 1 if self.game.snake.p.x == 0 else 0
-        # Check if right move is next to a border
-        border_right = 1 if self.game.snake.p.x == self.game.grid.x - 1 else 0
-        # Check if straight move is next to a border
-        border_straight = 1 if self.game.snake.p.y == 0 else 0
-        # There are no threats in the left and right directions because it's moving up
-        threat_left = 0
-        threat_right = 0
+        last_move = self.game.snake.last_move
 
-    elif last_move == Vector(0, 1):  # Last move was down
-        self.action_space = (Vector(1, 0), Vector(-1, 0), Vector(0, 1))  # Right, left, straight
-        self.moves['down'] += 1
-        # Check if left move is next to a border
-        border_left = 1 if self.game.snake.p.x == self.game.grid.x - 1 else 0
-        # Check if right move is next to a border
-        border_right = 1 if self.game.snake.p.x == 0 else 0
-        # Check if straight move is next to a border
-        border_straight = 1 if self.game.snake.p.y == self.game.grid.y - 1 else 0
-        # There are no threats in the left and right directions because it's moving down
-        threat_left = 0
-        threat_right = 0
-
-    elif last_move == Vector(-1, 0):  # Last move was left
-        self.moves['left'] += 1
-        self.action_space = (Vector(0, -1), Vector(0, 1), Vector(-1, 0))  # Straight, up, down
-        # Check if left move is next to a border
-        border_left = 1 if self.game.snake.p.y == 0 else 0
-        # Check if right move is next to a border
-        border_right = 1 if self.game.snake.p.y == self.game.grid.y - 1 else 0
-        # Check if straight move is next to a border
-        border_straight = 1 if self.game.snake.p.x == 0 else 0
-        # There are no threats in the left and right directions because it's moving left
-        threat_left = 0
-        threat_right = 0
-
-    elif last_move == Vector(1, 0):  # Last move was right
-        self.action_space = (Vector(0, 1), Vector(0, -1), Vector(1, 0))  # Straight, down, up
-        self.moves['right'] += 1
-        # Check if left move is next to a border
-        border_left = 1 if self.game.snake.p.y == self.game.grid.y - 1 else 0
-        # Check if right move is next to a border
-        border_right = 1 if self.game.snake.p.y == 0 else 0
-        # Check if straight move is next to a border
-        border_straight = 1 if self.game.snake.p.x == self.game.grid.x - 1 else 0
-        # There are no threats in the left and right directions because it's moving right
-        threat_left = 0
-        threat_right = 0
+        if last_move is not None:
+            print(last_move)
+           #gets threats from the diffrent direction possible left,right,straight
+            danger = self.calc_direction(last_move)
+            threat_right = danger[0]
+            threat_left = danger[1]
+            threat_straight = danger[2]
+            print(last_move[0],last_move[1])
 
         # last_move = self.game.snake.last_move
         # if last_move is not None:
@@ -176,10 +134,6 @@ if last_move is not None:
             # Calculate and normalize Euclidean distance to food
 
     # # Threats from borders: 1 if next to border, 0 otherwise
-        tn = 100 if self.game.snake.p.y == 0 else -100
-        te = 100 if self.game.snake.p.x == self.game.grid.x - 1 else -100
-        ts = 100 if self.game.snake.p.y == self.game.grid.y - 1 else -100
-        tw = 100 if self.game.snake.p.x == 0 else -100
 
         # normatnlized_dn = dn / (self.game.grid.y - 1)
         # normalized_de = de / (self.game.grid.x - 1)
@@ -187,7 +141,7 @@ if last_move is not None:
         # normalized_dw = dw / (self.game.grid.x - 1)
 
         # obs = (dn, de, ds, dw, dfx, dfy, tn,te,ts,tw, s)
-        obs = (dn, de, ds, dw, dfx, dist_food, tn,te,ts,tw, s)
+        obs = (dn, de, ds, dw, dfx, dist_food, threat_left,threat_right,threat_straight, s)
         print(obs)
         # obs = (dn, de, ds, dw, dfx, dfy, s)
 
@@ -203,6 +157,54 @@ if last_move is not None:
             pygame.display.flip()
             self.clock.tick(10)
         return next_move
+    def calc_direction(self, last_move):
+            if last_move == Vector(0, -1):  # Last move was up
+                self.action_space = (Vector(-1, 0), Vector(1, 0), Vector(0, -1))  # Left, right, straight
+                self.moves['up'] += 1
+                # Check if left move is next to a border
+                border_left = 1 if self.game.snake.p.x == 0 else 0
+                # Check if right move is next to a border
+                border_right = 1 if self.game.snake.p.x == self.game.grid.x - 1 else 0
+                # Check if straight move is next to a border
+                border_straight = 1 if self.game.snake.p.y == 0 else 0
+                # There are no threats in the left and right directions because it's moving up
+                return [border_left,border_right,border_straight]
+
+            elif last_move == Vector(0, 1):  # Last move was down
+                self.action_space = (Vector(1, 0), Vector(-1, 0), Vector(0, 1))  # Right, left, straight
+                self.moves['down'] += 1
+                # Check if left move is next to a border
+                border_left = 1 if self.game.snake.p.x == self.game.grid.x - 1 else 0
+                # Check if right move is next to a border
+                border_right = 1 if self.game.snake.p.x == 0 else 0
+                # Check if straight move is next to a border
+                border_straight = 1 if self.game.snake.p.y == self.game.grid.y - 1 else 0
+                # There are no threats in the left and right directions because it's moving down
+                return [border_left,border_right,border_straight]
+
+            elif last_move == Vector(-1, 0):  # Last move was left
+                self.moves['left'] += 1
+                self.action_space = (Vector(0, -1), Vector(0, 1), Vector(-1, 0))  # Straight, up, down
+                # Check if left move is next to a border
+                border_left = 1 if self.game.snake.p.y == 0 else 0
+                # Check if right move is next to a border
+                border_right = 1 if self.game.snake.p.y == self.game.grid.y - 1 else 0
+                # Check if straight move is next to a border
+                border_straight = 1 if self.game.snake.p.x == 0 else 0
+                # There are no threats in the left and right directions because it's moving left
+                return [border_left,border_right,border_straight]
+
+            elif last_move == Vector(1, 0):  # Last move was right
+                self.action_space = (Vector(0, 1), Vector(0, -1), Vector(1, 0))  # Straight, down, up
+                self.moves['right'] += 1
+                # Check if left move is next to a border
+                border_left = 1 if self.game.snake.p.y == self.game.grid.y - 1 else 0
+                # Check if right move is next to a border
+                border_right = 1 if self.game.snake.p.y == 0 else 0
+                # Check if straight move is next to a border
+                border_straight = 1 if self.game.snake.p.x == self.game.grid.x - 1 else 0
+                # There are no threats in the left and right directions because it's moving right
+                return [border_left,border_right,border_straight]
 
     def block(self, obj):
         return (obj.x * self.game.scale,
