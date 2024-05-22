@@ -139,11 +139,11 @@ class GeneticAlgorithm:
         print("###########FINAL RESULT########")
         self.print_fitness(self.rank_fitness(self.gen_info[-1]))
 if __name__ == '__main__':
-    ga=GeneticAlgorithm(population_size=1000,
+    ga=GeneticAlgorithm(population_size=60,
                         generations=200,
-                        keep_ratio=0.010,
+                        keep_ratio=0.25,
                         mutation=0.08,
-                        max_steps_in_game=1000,
+                        max_steps_in_game=700,
                         verbose=False)
     ga.initialize_population()
     ga.evolve()

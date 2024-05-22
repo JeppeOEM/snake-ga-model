@@ -1,4 +1,6 @@
 from typing import Protocol, Tuple
+
+import numpy as np
 from ga_models.ga_simple import SimpleModel
 from vector import Vector
 import pygame
@@ -6,10 +8,10 @@ from game_controller import GameController
 
 
 class GAController(GameController):
-    def __init__(self, game=None, model=None,display=False):
+    def __init__(self, game=None, model=None,display=True):
         self.display = display
         self.game = game
-        self.model = model if model else SimpleModel(dims=(7, 9, 15, 3)) # type: ignore
+        self.model = model if model else SimpleModel(dims=(11, 9, 15, 3)) # type: ignore
         self.game.controller = self
         self.action_space = (Vector(0, -1), Vector(0, 1), Vector(1, 0), Vector(-1, 0))
         self.death = 0
@@ -70,50 +72,123 @@ class GAController(GameController):
 
         return fit
 
+    def eucludian(self, apple_position, snake_position):
+        return ((apple_position.x - snake_position.x)**2 + (apple_position.y - snake_position.y)**2)**0.5
+
     def update(self) -> Vector:
         # observation space
-
+        print(self.last_move)
         # delta north, east, south, west
         dn = self.game.snake.p.y
         de = self.game.grid.x - self.game.snake.p.x
         ds = self.game.grid.y - self.game.snake.p.y
         dw = self.game.snake.p.x
-
+        max_distance = max(self.game.grid.x - 1, self.game.grid.y - 1)  # Maximum possible distance in the grid
+        dn = dn / max_distance
+        de = de / max_distance
+        ds = ds / max_distance
+        dw = dw / max_distance
         # delta food x and y
         dfx = self.game.snake.p.x - self.game.food.p.x
         dfy = self.game.snake.p.y - self.game.food.p.y
 
-
+        self.eucludian(self.game.food.p, self.game.snake.p)
         # score
         s = self.game.snake.score
 
-        last_move = self.game.snake.last_move
-        if last_move is not None:
-            if last_move == Vector(0, -1):  # Last move was up
-                self.action_space = (Vector(-1, 0), Vector(1, 0), Vector(0, -1))  # Left, right, straight
-                self.moves['up'] += 1
-                # print("last move up")
-            elif last_move == Vector(0, 1):  # Last move was down
-                self.action_space = (Vector(1, 0), Vector(-1, 0), Vector(0, 1))  # Right, left, straight
-                self.moves['down'] += 1
-                # print("last move down")
-            elif last_move == Vector(-1, 0):  # Last move was left
-                self.moves['left'] += 1
-                self.action_space = (Vector(0, -1), Vector(0, 1), Vector(-1, 0))  # Straight, up, down
-                # print("last move left")
-            elif last_move == Vector(1, 0):  # Last move was right
-                self.action_space = (Vector(0, 1), Vector(0, -1), Vector(1, 0))  # Straight, down, up
-                self.moves['right'] += 1
-                # print("last move right")
+        euclidean_distance_to_food = self.eucludian(self.game.food.p, self.game.snake.p)
+        max_distance = ((self.game.grid.x - 1) ** 2 + (self.game.grid.y - 1) ** 2) ** 0.5
+        dist_food = euclidean_distance_to_food / max_distance
+        print("norma",dist_food)
+        print(euclidean_distance_to_food)
+if last_move is not None:
+    if last_move == Vector(0, -1):  # Last move was up
+        self.action_space = (Vector(-1, 0), Vector(1, 0), Vector(0, -1))  # Left, right, straight
+        self.moves['up'] += 1
+        # Check if left move is next to a border
+        border_left = 1 if self.game.snake.p.x == 0 else 0
+        # Check if right move is next to a border
+        border_right = 1 if self.game.snake.p.x == self.game.grid.x - 1 else 0
+        # Check if straight move is next to a border
+        border_straight = 1 if self.game.snake.p.y == 0 else 0
+        # There are no threats in the left and right directions because it's moving up
+        threat_left = 0
+        threat_right = 0
+
+    elif last_move == Vector(0, 1):  # Last move was down
+        self.action_space = (Vector(1, 0), Vector(-1, 0), Vector(0, 1))  # Right, left, straight
+        self.moves['down'] += 1
+        # Check if left move is next to a border
+        border_left = 1 if self.game.snake.p.x == self.game.grid.x - 1 else 0
+        # Check if right move is next to a border
+        border_right = 1 if self.game.snake.p.x == 0 else 0
+        # Check if straight move is next to a border
+        border_straight = 1 if self.game.snake.p.y == self.game.grid.y - 1 else 0
+        # There are no threats in the left and right directions because it's moving down
+        threat_left = 0
+        threat_right = 0
+
+    elif last_move == Vector(-1, 0):  # Last move was left
+        self.moves['left'] += 1
+        self.action_space = (Vector(0, -1), Vector(0, 1), Vector(-1, 0))  # Straight, up, down
+        # Check if left move is next to a border
+        border_left = 1 if self.game.snake.p.y == 0 else 0
+        # Check if right move is next to a border
+        border_right = 1 if self.game.snake.p.y == self.game.grid.y - 1 else 0
+        # Check if straight move is next to a border
+        border_straight = 1 if self.game.snake.p.x == 0 else 0
+        # There are no threats in the left and right directions because it's moving left
+        threat_left = 0
+        threat_right = 0
+
+    elif last_move == Vector(1, 0):  # Last move was right
+        self.action_space = (Vector(0, 1), Vector(0, -1), Vector(1, 0))  # Straight, down, up
+        self.moves['right'] += 1
+        # Check if left move is next to a border
+        border_left = 1 if self.game.snake.p.y == self.game.grid.y - 1 else 0
+        # Check if right move is next to a border
+        border_right = 1 if self.game.snake.p.y == 0 else 0
+        # Check if straight move is next to a border
+        border_straight = 1 if self.game.snake.p.x == self.game.grid.x - 1 else 0
+        # There are no threats in the left and right directions because it's moving right
+        threat_left = 0
+        threat_right = 0
+
+        # last_move = self.game.snake.last_move
+        # if last_move is not None:
+        #     if last_move == Vector(0, -1):  # Last move was up
+        #         self.action_space = (Vector(-1, 0), Vector(1, 0), Vector(0, -1))  # Left, right, straight
+        #         self.moves['up'] += 1
+        #         # print("last move up")
+        #     elif last_move == Vector(0, 1):  # Last move was down
+        #         self.action_space = (Vector(1, 0), Vector(-1, 0), Vector(0, 1))  # Right, left, straight
+        #         self.moves['down'] += 1
+        #         # print("last move down")
+        #     elif last_move == Vector(-1, 0):  # Last move was left
+        #         self.moves['left'] += 1
+        #         self.action_space = (Vector(0, -1), Vector(0, 1), Vector(-1, 0))  # Straight, up, down
+        #         # print("last move left")
+        #     elif last_move == Vector(1, 0):  # Last move was right
+        #         self.action_space = (Vector(0, 1), Vector(0, -1), Vector(1, 0))  # Straight, down, up
+        #         self.moves['right'] += 1
+        #         # print("last move right")
+
+            # Calculate and normalize Euclidean distance to food
 
     # # Threats from borders: 1 if next to border, 0 otherwise
-    #     tn = 1 if self.game.snake.p.y == 0 else 0  # Top border
-    #     te = 1 if self.game.snake.p.x == self.game.grid.x - 1 else 0  # Right border
-    #     ts = 1 if self.game.snake.p.y == self.game.grid.y - 1 else 0  # Bottom border
-    #     tw = 1 if self.game.snake.p.x == 0 else 0  # Left border
+        tn = 100 if self.game.snake.p.y == 0 else -100
+        te = 100 if self.game.snake.p.x == self.game.grid.x - 1 else -100
+        ts = 100 if self.game.snake.p.y == self.game.grid.y - 1 else -100
+        tw = 100 if self.game.snake.p.x == 0 else -100
 
-        obs = (dn, de, ds, dw, dfx, dfy, s)
+        # normatnlized_dn = dn / (self.game.grid.y - 1)
+        # normalized_de = de / (self.game.grid.x - 1)
+        # normalized_ds = ds / (self.game.grid.y - 1)
+        # normalized_dw = dw / (self.game.grid.x - 1)
 
+        # obs = (dn, de, ds, dw, dfx, dfy, tn,te,ts,tw, s)
+        obs = (dn, de, ds, dw, dfx, dist_food, tn,te,ts,tw, s)
+        print(obs)
         # obs = (dn, de, ds, dw, dfx, dfy, s)
 
         # action space

@@ -17,6 +17,7 @@ class HumanController(GameController):
         self.clock = pygame.time.Clock()
         self.color_snake_head = (0, 255, 0)
         self.color_food = (255, 0, 0)
+        self.human = True
 
     def __del__(self):
         pygame.quit()

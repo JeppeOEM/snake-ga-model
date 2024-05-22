@@ -35,6 +35,7 @@ class SnakeGame:
 
     def how_many_diffrent_moves(self):
         # Count how many move directions have been used
+        # if self.controller.human != True:
         different_moves = sum(1 for move in self.controller.moves.values() if move > 0)
 
         # Increment exploration if all directions have been used at least once
