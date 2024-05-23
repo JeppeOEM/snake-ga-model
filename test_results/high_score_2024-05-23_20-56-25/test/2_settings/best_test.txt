@@ -1,0 +1,72 @@
+Best Test Result:
+Iteration (0 based): 2 
+Best Settings:
+population_size: 60
+generations: 2
+keep_ratio: 0.25
+mutation: 0.08
+max_steps_in_game: 700
+dims: (7, 9, 15, 3)
+fitness: {'name': 'high_score', 'score': 1000, 'high_score': 10000, 'death': 100, 'moves_without_food': 200, 'death_no_food': 100}
+Best Population:
+Controller 1 Fitness: -112200, Score: 4, Deaths: 28, Steps: 700
+Controller 2 Fitness: -122300, Score: 2, Deaths: 27, Steps: 700
+Controller 3 Fitness: -122900, Score: 2, Deaths: 25, Steps: 700
+Controller 4 Fitness: -123100, Score: 2, Deaths: 23, Steps: 700
+Controller 5 Fitness: -123500, Score: 3, Deaths: 33, Steps: 700
+Controller 6 Fitness: -124100, Score: 2, Deaths: 37, Steps: 700
+Controller 7 Fitness: -124600, Score: 1, Deaths: 18, Steps: 700
+Controller 8 Fitness: -124900, Score: 2, Deaths: 21, Steps: 700
+Controller 9 Fitness: -126100, Score: 3, Deaths: 39, Steps: 700
+Controller 10 Fitness: -126100, Score: 1, Deaths: 29, Steps: 700
+Controller 11 Fitness: -126200, Score: 1, Deaths: 26, Steps: 700
+Controller 12 Fitness: -126200, Score: 2, Deaths: 34, Steps: 700
+Controller 13 Fitness: -126400, Score: 2, Deaths: 28, Steps: 700
+Controller 14 Fitness: -126500, Score: 1, Deaths: 17, Steps: 700
+Controller 15 Fitness: -127100, Score: 1, Deaths: 31, Steps: 700
+Controller 16 Fitness: -128000, Score: 1, Deaths: 30, Steps: 700
+Controller 17 Fitness: -128300, Score: 1, Deaths: 27, Steps: 700
+Controller 18 Fitness: -128700, Score: 1, Deaths: 29, Steps: 700
+Controller 19 Fitness: -129100, Score: 1, Deaths: 21, Steps: 700
+Controller 20 Fitness: -129400, Score: 2, Deaths: 30, Steps: 700
+Controller 21 Fitness: -129900, Score: 2, Deaths: 19, Steps: 700
+Controller 22 Fitness: -130000, Score: 2, Deaths: 32, Steps: 700
+Controller 23 Fitness: -130100, Score: 1, Deaths: 27, Steps: 700
+Controller 24 Fitness: -131500, Score: 1, Deaths: 21, Steps: 700
+Controller 25 Fitness: -132000, Score: 1, Deaths: 30, Steps: 700
+Controller 26 Fitness: -132400, Score: 1, Deaths: 32, Steps: 700
+Controller 27 Fitness: -132700, Score: 1, Deaths: 35, Steps: 700
+Controller 28 Fitness: -141700, Score: 0, Deaths: 17, Steps: 700
+Controller 29 Fitness: -141700, Score: 0, Deaths: 17, Steps: 700
+Controller 30 Fitness: -141800, Score: 0, Deaths: 18, Steps: 700
+Controller 31 Fitness: -141900, Score: 0, Deaths: 19, Steps: 700
+Controller 32 Fitness: -141900, Score: 0, Deaths: 19, Steps: 700
+Controller 33 Fitness: -142100, Score: 0, Deaths: 21, Steps: 700
+Controller 34 Fitness: -142100, Score: 0, Deaths: 20, Steps: 700
+Controller 35 Fitness: -142100, Score: 0, Deaths: 21, Steps: 700
+Controller 36 Fitness: -142200, Score: 0, Deaths: 22, Steps: 700
+Controller 37 Fitness: -142300, Score: 0, Deaths: 23, Steps: 700
+Controller 38 Fitness: -142400, Score: 0, Deaths: 23, Steps: 700
+Controller 39 Fitness: -142400, Score: 0, Deaths: 24, Steps: 700
+Controller 40 Fitness: -142500, Score: 0, Deaths: 25, Steps: 700
+Controller 41 Fitness: -142500, Score: 0, Deaths: 25, Steps: 700
+Controller 42 Fitness: -142500, Score: 0, Deaths: 25, Steps: 700
+Controller 43 Fitness: -142500, Score: 0, Deaths: 25, Steps: 700
+Controller 44 Fitness: -142600, Score: 0, Deaths: 26, Steps: 700
+Controller 45 Fitness: -142600, Score: 0, Deaths: 26, Steps: 700
+Controller 46 Fitness: -142600, Score: 0, Deaths: 26, Steps: 700
+Controller 47 Fitness: -142700, Score: 0, Deaths: 27, Steps: 700
+Controller 48 Fitness: -142800, Score: 0, Deaths: 28, Steps: 700
+Controller 49 Fitness: -142900, Score: 0, Deaths: 29, Steps: 700
+Controller 50 Fitness: -143100, Score: 0, Deaths: 31, Steps: 700
+Controller 51 Fitness: -143100, Score: 0, Deaths: 31, Steps: 700
+Controller 52 Fitness: -143400, Score: 0, Deaths: 34, Steps: 700
+Controller 53 Fitness: -143500, Score: 0, Deaths: 35, Steps: 700
+Controller 54 Fitness: -143500, Score: 0, Deaths: 35, Steps: 700
+Controller 55 Fitness: -143600, Score: 0, Deaths: 36, Steps: 700
+Controller 56 Fitness: -143600, Score: 0, Deaths: 36, Steps: 700
+Controller 57 Fitness: -143600, Score: 0, Deaths: 36, Steps: 700
+Controller 58 Fitness: -143700, Score: 0, Deaths: 37, Steps: 700
+Controller 59 Fitness: -143700, Score: 0, Deaths: 37, Steps: 700
+Controller 60 Fitness: -143900, Score: 0, Deaths: 39, Steps: 700
+Controller 61 Fitness: -144000, Score: 0, Deaths: 40, Steps: 700

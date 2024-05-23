@@ -188,7 +188,9 @@ class GeneticAlgorithm:
         self.max_data.append((max_fitness, max_score, max_death,max_moves_without_food,max_same_dir_as_before,))
 
     def rank_fitness(self, population):
+            population = sorted(population, key=lambda x: x.fitness, reverse=True)
             return population
+
     def print_this(self, i, controller):
         return f"Controller {i} #| Fitness = {controller.fitness} |# "
     def print_fitness(self, pop):
@@ -222,10 +224,11 @@ class GeneticAlgorithm:
                         break
                 f.write(f"LENGTH: {len(pop)}\n")
 
-    def final_result(self):
+    def final_result(self,verbose):
         print("###########FINAL RESULT########")
         last_gen = self.rank_fitness(self.gen_info[-1])
-        self.print_fitness(last_gen)
+        if verbose == True:
+            self.print_fitness(last_gen)
         return last_gen
 
 class TestGenerator:
@@ -258,9 +261,90 @@ class TestGenerator:
     def run(self):
         for setting in self.algo_setting_arr:
             print(setting)
-    def evaluate_result():
+
+    def find_highest_scoring_population(self, data_tuple):
+        highest_score = -float('inf')
+        best_population = None
+
+        for idx, data in enumerate(data_tuple):
+            # We take index 0, because index 1 is the settings for that data
+            ranked_population = sorted(data[0], key=lambda x: x.fitness, reverse=True)
+            settings = data[1]
+            iteration = data[2]
+            highest_in_population = ranked_population[0].fitness
+
+            print(f"Highest score in population {idx}: {highest_in_population}")
+
+            if highest_in_population > highest_score:
+                highest_score = highest_in_population
+                best_population = ranked_population
+                best_settings = settings
+
+        return best_population, best_settings, iteration
+
+    def save_result_txt(self, best_population, best_settings, iteration, test_folder,folder_name):
+        folder_path = os.path.join(test_folder, folder_name)
+        os.makedirs(folder_path, exist_ok=True)
+        file_path = os.path.join(folder_path, 'best_test.txt')
+
+        with open(file_path, 'w') as f:
+            f.write("Best Test Result:\n")
+            f.write(f"Iteration (0 based): {iteration} \n")
+            # f.write(f"Highest Score: {highest_score}\n")
+            f.write("Best Settings:\n")
+            for key, value in best_settings.items():
+                f.write(f"{key}: {value}\n")
+            f.write("Best Population:\n")
+            for i, controller in enumerate(best_population):
+                f.write(f"Controller {i+1} Fitness: {controller.fitness}, Score: {controller.result['score']}, Deaths: {controller.result['death']}, Steps: {controller.result['step']}\n")
+                print(f"Controller {i+1} Fitness: {controller.fitness}, Score: {controller.result['score']}, Deaths: {controller.result['death']}, Steps: {controller.result['step']}\n")
+
+        print(f"Best test result saved to {file_path}")
 
 
+
+def test_genetic_algo( iterations, algo_settings, algo_attr,fitness_settings,fitness_attr):
+        tests = TestGenerator(iterations=iterations)
+        #Iterate over the settings attributes defined in algo_attr and increment value
+        #with the specified values in the dict
+        tests.modify_settings(algo_settings,algo_attr,"algo")
+        tests.modify_settings(fitness_settings,fitness_attr,"fitness")
+        tests.combine()
+        tests.run()
+
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+
+
+        folder = f'test_results/{fitness_settings["name"]}_{timestamp}/test'
+        test_folder = os.path.join(os.getcwd(), folder)
+        i=0
+        data = []
+        for settings in tests.algo_setting_arr:
+            i+=1
+            print("STARTING ALGORITHM NUMBER: ",i)
+            fitness = Fitness(method=settings['fitness']['name'],params=settings['fitness'])
+            ga=GeneticAlgorithm(population_size=settings['population_size'],
+                                generations=settings['generations'],
+                                keep_ratio=settings['keep_ratio'],
+                                mutation=settings['mutation'],
+                                max_steps_in_game=settings['max_steps_in_game'],
+                                dims=settings['dims'],
+                                fitness=fitness,
+                                verbose=False)
+
+            ga.initialize_population()
+            ga.evolve()
+            ga.print_generation_fitness(ga.gen_info,test_folder,i)
+            # left , in the end to create a tupple
+            final_result = ga.final_result(verbose=False)
+            folder_name = f'{i}_settings'
+            tests.save_result_txt(final_result,settings,i, test_folder, folder_name),
+            data.append((final_result,settings,i,))
+            ga.generate_plots(ga.max_data,test_folder,i)
+        # find best among the test settings
+        best_population, best_settings, iteration = tests.find_highest_scoring_population(data)
+        tests.save_result_txt(best_population, best_settings, iteration, test_folder,f"0BEST_TEST")
+        return (best_population, best_settings, iteration, folder,)
 
 
 if __name__ == '__main__':
@@ -282,48 +366,40 @@ if __name__ == '__main__':
         'max_steps_in_game':700,
         'dims':(7,9,15,3),
         'fitness': {},
-        'dimss':(7, 9, 15, 3)
+
     }
     fitness_settings = {
         'name':'score_death',
         'same_dir_as_befire': -0.05,
-        'score': 1000,
+        'score': 500,
         'death':50
     }
+    fitness_settings_high_score = {
+        'name':'high_score',
+        'score': 1000,
+        'high_score': 10000,
+        'death': 100,
+        'moves_without_food': 100,
+        'death_no_food': 100,
+    }
 
+
+    final_result = []
     algo_attr = [{"name":"population_size","value":0},{"name":"generations","value":0}]
-    fitness_attr = [{"name":"death","value":10}]
-    tests = TestGenerator(iterations=20)
-    #Iterate over the settings attributes defined in algo_attr and increment value
-    #with the specified values in the dict
-    tests.modify_settings(algo_settings,algo_attr,"algo")
-    tests.modify_settings(fitness_settings,fitness_attr,"fitness")
-    tests.combine()
-    tests.run()
-
-    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    # fitness attr
+    fitness_attr = [{"name":"score","value":50}]
+    # high score attr
+    fitness_attr_high_score = [{"name":"moves_without_food","value":50}]
+    result = test_genetic_algo(2, algo_settings, algo_attr, fitness_settings, fitness_attr)
+    final_result.append(result)
+    result2 = test_genetic_algo(2, algo_settings, algo_attr, fitness_settings_high_score, fitness_attr_high_score)
+    final_result.append(result2)
 
 
-    folder = f'test_results/{fitness_settings["name"]}_{timestamp}/test'
-    test_folder = os.path.join(os.getcwd(), folder)
-    i=0
-    data = []
-    for settings in tests.algo_setting_arr:
-        i+=1
-        print("STARTING ALGORITHM NUMBER: ",i)
-        fitness = Fitness(method=settings['fitness']['name'],params=settings['fitness'])
-        ga=GeneticAlgorithm(population_size=settings['population_size'],
-                            generations=settings['generations'],
-                            keep_ratio=settings['keep_ratio'],
-                            mutation=settings['mutation'],
-                            max_steps_in_game=settings['max_steps_in_game'],
-                            dims=settings['dims'],
-                            fitness=fitness,
-                            verbose=False)
-
-        ga.initialize_population()
-        ga.evolve()
-        ga.print_generation_fitness(ga.gen_info,test_folder,i)
-        # left , in the end to create a tupple
-        data.append((ga.final_result(),settings,))
-        ga.generate_plots(ga.max_data,test_folder,i)
+    for idx, result in enumerate(final_result):
+        print(f"Result of test {idx + 1}:")
+        ranked_population = sorted(result[0], key=lambda x: x.fitness, reverse=True)
+        print("Fitess score:",ranked_population[0].fitness,"Score: ",ranked_population[0].score)
+        print(f"Settings: {result[1]}")
+        print(f"Iteration Number in folder: {result[2]}")
+        print(f"Folder name: {result[3]}\n")

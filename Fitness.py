@@ -20,21 +20,20 @@ class Fitness:
 
     def high_score(self, result):
         params = self.params
-        high_score, step, score, death, death_no_food, exploration,moves_with_out_food, moves = result.values()
+        high_score, step, score, death, death_no_food, exploration,moves_with_out_food, same_dir_as_before, moves = result.values()
         score_weight = 900000
         penalty=0
-        score = score*1000
-        high_score = high_score*100
-        death = -1*(death*100)
-        moves_with_out_food = -1*(moves_with_out_food*30)
-        death_no_food = -1*(death_no_food*100)
+        score = score*params['score']
+        high_score = high_score*params['high_score']
+        death = -1*(death*params['death'])
+        moves_with_out_food = -1*(moves_with_out_food*params['moves_without_food'])
+        death_no_food = -1*(death_no_food*params['death_no_food'])
         fit = high_score+death+moves_with_out_food+death_no_food+penalty
 
         return fit
 
     def score_death(self, result):
         params = self.params
-        print("Using score death fitness function")
         high_score, step, score, death, death_no_food, exploration,moves_with_out_food, same_dir_as_before, moves = result.values()
 
         score = score*params['score']

@@ -1,0 +1,18 @@
+##################################################
+Generation: 0
+Controller 1 Fitness = 1140, death: 31, step: 700, score: 3
+Moves: {'up': 6, 'down': 6, 'left': 4, 'right': 8}
+____________________________________________________________
+Controller 2 Fitness = 980, death: 17, step: 700, score: 2
+Moves: {'up': 0, 'down': 16, 'left': 0, 'right': 0}
+____________________________________________________________
+LENGTH: 60
+##################################################
+Generation: 1
+Controller 1 Fitness = 2320, death: 28, step: 700, score: 4
+Moves: {'up': 0, 'down': 6, 'left': 0, 'right': 0}
+____________________________________________________________
+Controller 2 Fitness = 2320, death: 28, step: 700, score: 4
+Moves: {'up': 2, 'down': 6, 'left': 0, 'right': 8}
+____________________________________________________________
+LENGTH: 61
