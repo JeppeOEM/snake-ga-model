@@ -26,6 +26,7 @@ class SnakeGame:
         self.exploration = 0
         self.accum_step = accum_step
         self.max_steps_in_game = max_steps_in_game
+        self.same_dir_as_before = 0
 
     def add_to_result(self, value, target):
 
@@ -33,23 +34,13 @@ class SnakeGame:
         print(current_value)
         setattr(self.result,target,current_value + value)
 
-    def how_many_diffrent_moves(self):
-        # Count how many move directions have been used
-        # if self.controller.human != True:
-        different_moves = sum(1 for move in self.controller.moves.values() if move > 0)
-
-        # Increment exploration if all directions have been used at least once
-        if different_moves == 4:
-            self.exploration += 1
-        return different_moves
-
     def run(self):
         running = True
         while running:
             next_move = self.controller.update()
             if next_move: self.snake.v = next_move
             self.snake.move()
-            self.how_many_diffrent_moves()
+
             self.snake.moves_without_food += 1
             self.step += 1
             if self.step + self.accum_step == self.max_steps_in_game:
@@ -94,14 +85,23 @@ class Snake:
         self.score = 0
         self.v = Vector(0, 0)
         self.body = deque()
-        self.body.append(Vector.random_within(self.game.grid))
+        # self.body.append(Vector.random_within(self.game.grid))
         self.last_move = Vector(0, 1)
         self.moves_without_food = 0
         self.max_without_food = 200
+        initial_position = Vector.random_within(self.game.grid)
+        self.body.append(initial_position)
+        self.body.append(initial_position + Vector(1, 0))
+    def same_direction(self):
+        if self.v == self.last_move:
+            self.game.same_dir_as_before +=1
+
 
     def move(self):
         self.p = self.p + self.v
+        self.same_direction()
         self.last_move = self.v
+
     def get_last_move(self):
         return self.last_move
 

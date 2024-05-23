@@ -10,6 +10,8 @@ from ga_models.ga_simple import SimpleModel
 from snake import SnakeGame
 from ga_controller import GAController
 from collections import Counter
+import matplotlib.pyplot as plt
+
 # dims = (7, 9, 15, 3)
 
 
@@ -26,6 +28,12 @@ class GeneticAlgorithm:
         self.max_steps_in_game = max_steps_in_game
         self.dims = dims
         self.fitness = fitness
+        self.max_data = []
+
+    def __repr__(self) -> str:
+        return (f"GeneticAlgorithm(population_size={self.population_size}, generations={self.generations}, "
+                f"keep_ratio={self.keep_ratio}, mutation={self.mutation}, max_steps_in_game={self.max_steps_in_game}, "
+                f"verbose={self.verbose}, dims={self.dims}, fitness={self.fitness})")
 
     def initialize_population(self):
 
@@ -50,6 +58,7 @@ class GeneticAlgorithm:
                           "death_no_food":0,
                           "exploration":0,
                           "moves_without_food":0,
+                          "same_dir_as_before":0,
                           "moves":{"right":0,"left":0,"up":0,"down":0}}
                 while result['step'] < self.max_steps_in_game:
                     game = SnakeGame(accum_step=result['step'],
@@ -65,11 +74,14 @@ class GeneticAlgorithm:
                     result['death_no_food'] += game.death_no_food
                     result['exploration'] += game.exploration
                     result['moves_without_food'] += game.snake.moves_without_food
+                    result['same_dir_as_before'] += game.same_dir_as_before
                     # Increment steps in each direction
                     result['moves'] = dict(Counter(result['moves']) + Counter(controller.moves))
                 controller.result = result
                 population.append(controller)
             self.gen_info.append(population)
+            population = self.rank_fitness(population)
+            self.save_info(population)
             parents = self.selection(population)
             babies = self.mate_in_pairs(parents)
             parent_models = self.extract_models(parents)
@@ -86,7 +98,7 @@ class GeneticAlgorithm:
             # For debugging
             # self.print_edge("first",new_pop)
     def selection(self, population):
-        population = self.rank_fitness(population)
+
         if self.verbose:
             self.print_fitness(population)
         top_peformers = int(len(population) * self.keep_ratio)
@@ -112,9 +124,58 @@ class GeneticAlgorithm:
 
         return babies
 
+    def generate_plots(self, data):
+        x_values = [t[0] for t in data]
+        y_values = [t[1] for t in data]
+        z_values = [t[2] for t in data]
+
+        # Create a figure and three subplots
+        fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(8, 12))
+
+        # Plot for the first values
+        ax1.plot(x_values, marker='o', linestyle='-')
+        ax1.set_title('Max Fitness')
+        ax1.set_xlabel('Fitness')
+        ax1.set_ylabel('Generations')
+
+        # Plot for the second values
+        ax2.plot(y_values, marker='o', linestyle='-')
+        ax2.set_title('Max Apples Eaten Score')
+        ax2.set_xlabel('Generations')
+        ax2.set_ylabel('Score')
+
+        # Plot for the third values
+        ax3.plot(z_values, marker='o', linestyle='-')
+        ax3.set_title('Plot of Third Values')
+        ax3.set_xlabel('Generations')
+        ax3.set_ylabel('Death')
+
+        # Adjust layout to prevent overlap
+        plt.tight_layout()
+
+        # Ensure the 'plots' directory exists in the root directory
+        plot_directory = os.path.join(os.getcwd(), 'plots')
+        os.makedirs(plot_directory, exist_ok=True)
+
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        # Save the plot to a file in the 'plots' directory
+        plot_path = os.path.join(plot_directory, f'plot_{timestamp}.png')
+        plt.savefig(plot_path)
+
+        # Show the plots
+        # plt.show()
+
+        print(f"Plot saved to {plot_path}")
+
+    # saves info from a sorted array
+    def save_info(self, population):
+        max_fitness = population[0].fitness
+        max_score = population[0].result['score']
+        max_death = population[0].result['death']
+        # return as tupple
+        self.max_data.append((max_fitness, max_score, max_death,))
 
     def rank_fitness(self, population):
-            population = sorted(population, key=lambda x: x.fitness, reverse=True)
             return population
     def print_this(self, i, controller):
         return f"Controller {i} #| Fitness = {controller.fitness} |# "
@@ -149,33 +210,94 @@ class GeneticAlgorithm:
         print("###########FINAL RESULT########")
         self.print_fitness(self.rank_fitness(self.gen_info[-1]))
 
+
+class TestGenerator:
+    def __init__(self, iterations=0):
+        self.algo_settings = algo_settings
+        self.fitness_settings = fitness_settings
+        self.iterations = iterations
+        self.algo_setting_arr = []
+        self.fitness_setting_arr = []
+
+    def modify_settings(self, base_settings, attribute_changes, setting_type):
+
+        for i in range(1, self.iterations + 1):
+            new_settings = base_settings.copy()  # Create a new copy of base settings in each iteration
+            print(base_settings)
+            ii = 0
+            for change in attribute_changes:
+                attr_name = change["name"]
+                attr_value = change["value"] * i
+                if isinstance(new_settings[attr_name], int):
+                    new_settings[attr_name] += attr_value
+            if setting_type == "algo":
+                self.algo_setting_arr.append(new_settings)
+            elif setting_type == "fitness":
+                self.fitness_setting_arr.append(new_settings)
+    def combine(self):
+        for algo, fitness in zip(self.algo_setting_arr,self.fitness_setting_arr):
+            algo['fitness'] = fitness
+
+    def run(self):
+        for setting in self.algo_setting_arr:
+            print(setting)
+
+
+
+
 if __name__ == '__main__':
-    high_score = {
-        'high_score': 10,
-        'step': 20,
-        'score': 30,
-        'death': 1,
-        'death_no_food': 1,
-        'exploration': 0.5,
-        'moves_with_out_food': 2,
-        'moves': 100
+    # algo_settings = {
+    #     'population_size':60,
+    #     'generations': 50,
+    #     'keep_ration':0.25,
+    #     'mutation':0.08,
+    #     'max_steps_in_game':700,
+    #     'dims':(7,9,15,3),
+    #     'fitness': {},
+    #     'verbose': False
+    # }
+    algo_settings = {
+        'population_size':60,
+        'generations': 50,
+        'keep_ratio':0.25,
+        'mutation':0.08,
+        'max_steps_in_game':700,
+        'dims':(7,9,15,3),
+        'fitness': {},
+        'verbose': False
     }
-    step_death = {
-        'step': 10
+    fitness_settings = {
+        'name':'score_death',
+        'same_dir_as_befire': -0.05,
+        'score': 1000,
+        'death':50
     }
 
+    algo_attr = [{"name":"population_size","value":0},{"name":"generations","value":0}]
+    fitness_attr = [{"name":"death","value":10}]
+    tests = TestGenerator(iterations=20)
+    #Iterate over the settings attributes defined in algo_attr and increment value
+    #with the specified values in the dict
+    tests.modify_settings(algo_settings,algo_attr,"algo")
+    tests.modify_settings(fitness_settings,fitness_attr,"fitness")
+    tests.combine()
+    tests.run()
 
-    fitness = Fitness(method="step_death")
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    folder = f'{fitness_settings['name']}_{timestamp}'
+    for settings in tests.algo_setting_arr:
+        fitness = Fitness(method=settings['fitness']['name'],params=settings['fitness'])
+        ga=GeneticAlgorithm(population_size=settings['population_size'],
+                            generations=settings['generations'],
+                            keep_ratio=settings['keep_ratio'],
+                            mutation=settings['mutation'],
+                            max_steps_in_game=settings['max_steps_in_game'],
+                            dims=(7, 9, 15, 3),
+                            fitness=fitness,
+                            verbose=False)
 
-    ga=GeneticAlgorithm(population_size=60,
-                        generations=200,
-                        keep_ratio=0.25,
-                        mutation=0.08,
-                        max_steps_in_game=700,
-                        dims=(9, 9, 15, 3),
-                        fitness=fitness,
-                        verbose=False)
-    ga.initialize_population()
-    ga.evolve()
-    ga.print_generation_fitness(ga.gen_info)
-    ga.final_result()
+        ga.initialize_population()
+        ga.evolve()
+        ga.print_generation_fitness(ga.gen_info)
+        ga.final_result()
+        ga.generate_plots(ga.max_data,)

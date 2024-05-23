@@ -5,8 +5,11 @@ class Fitness:
         self.method = method
         self.methods = {
             'high_score': self.high_score,
-            'step_death': self.step_death
+            'score_death': self.score_death
         }
+
+    def __repr__(self) -> str:
+        return self.method
 
     def __call__(self, result):
         if self.method in self.methods:
@@ -16,6 +19,7 @@ class Fitness:
 
 
     def high_score(self, result):
+        params = self.params
         high_score, step, score, death, death_no_food, exploration,moves_with_out_food, moves = result.values()
         score_weight = 900000
         penalty=0
@@ -28,14 +32,16 @@ class Fitness:
 
         return fit
 
-    def step_death(self, result):
-        high_score, step, score, death, death_no_food, exploration,moves_with_out_food, moves = result.values()
+    def score_death(self, result):
+        params = self.params
+        print("Using score death fitness function")
+        high_score, step, score, death, death_no_food, exploration,moves_with_out_food, same_dir_as_before, moves = result.values()
 
-        score = score*1000
-        high_score = high_score*100
-        death = -1*(death*100)
-        moves_with_out_food = -1*(moves_with_out_food*30)
-        death_no_food = -1*(death_no_food*100)
-        fit = high_score+death+moves_with_out_food+death_no_food
-
+        score = score*params['score']
+        same_dir_as_before = params['same_dir_as_befire']*(same_dir_as_before)
+        death = -1*(death*params['death'])
+        if death > 0:
+            -1*(death/score+1)
+        fit = 0
+        fit=fit+score+death
         return fit

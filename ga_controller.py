@@ -9,7 +9,7 @@ from game_controller import GameController
 
 
 class GAController(GameController):
-    def __init__(self, game=None, model=None,display=True, dims=None, fitness_function=None):
+    def __init__(self, game=None, model=None,display=False, dims=None, fitness_function=None):
         self.display = display
         self.game = game
         self.model = model if model else SimpleModel(dims=dims) # type: ignore
@@ -69,11 +69,11 @@ class GAController(GameController):
 
         # fit = fit+death+moves_with_out_food
         # fit = fit+death_no_food
-        score = score*1000
-        high_score = high_score*100
-        death = -1*(death*100)
-        moves_with_out_food = -1*(moves_with_out_food*30)
-        death_no_food = -1*(death_no_food*100)
+        score = score*10000
+        high_score = high_score*100000
+        death = -2*(death*100)
+        moves_with_out_food = -1*(moves_with_out_food*300)
+        death_no_food = -1*(death_no_food*10000)
         # print(death_no_food)
 
         fit = high_score+death+moves_with_out_food+death_no_food+penalty
@@ -119,28 +119,46 @@ class GAController(GameController):
     def eucludian(self, apple_position, snake_position):
         return ((apple_position.x - snake_position.x)**2 + (apple_position.y - snake_position.y)**2)**0.5
 
-    def angle_with_apple(self, snake_position, apple_position):
-        apple_vector = np.array(apple_position.x) - np.array(snake_position.y)
-        snake_vector = np.array(snake_position.x) - np.array(snake_position.y)
+    def angle_with_apple(self):
+        head = self.game.snake.body[0]
+        after_head = self.game.snake.body[1]
+        food = self.game.food.p
+        apple_vector_dir = np.array([food.x, food.y]) - np.array([head.x, head.y])
+        snake_vector_dir = np.array([head.x, head.y]) - np.array([after_head.y])
+        # print("cgeck zero",apple_vector_dir, "snake_vector", snake_vector_dir)
+        norm_apple_vector = np.linalg.norm(apple_vector_dir)
+        norm_snake_vector = np.linalg.norm(snake_vector_dir)
 
-        norm_apple_vector = np.linalg.norm(apple_vector)
-        norm_snake_vector = np.linalg.norm(snake_vector)
+        apple_normalized = apple_vector_dir / norm_apple_vector
+        snake_normalized = snake_vector_dir / norm_snake_vector
 
-        apple_normalized = apple_vector / norm_apple_vector
-        snake_normalized = snake_vector / norm_snake_vector
+        norm_of_apple_vector_dir = np.linalg.norm(apple_vector_dir)
+        norm_of_snake_vector_dir = np.linalg.norm(snake_vector_dir)
+        if norm_of_apple_vector_dir == 0:
+            norm_of_apple_vector_dir = 10
+        if norm_of_snake_vector_dir == 0:
+            norm_of_snake_vector_dir = 10
+
+        apple_vector_dir_normalized = apple_vector_dir / norm_of_apple_vector_dir
+        snake_vector_dir_normalized = snake_vector_dir / norm_of_snake_vector_dir
+        angle = math.atan2(
+            apple_vector_dir_normalized[1] * snake_vector_dir_normalized[0] - apple_vector_dir_normalized[
+                0] * snake_vector_dir_normalized[1],
+            apple_vector_dir_normalized[1] * snake_vector_dir_normalized[1] + apple_vector_dir_normalized[
+                0] * snake_vector_dir_normalized[0]) / math.pi
+        return angle, snake_vector_dir, apple_vector_dir_normalized, snake_vector_dir_normalized
+
+
+
         # Calculate the angle between the snake's direction and the vector to the apple
-        normalized_angle = np.dot([snake_position.x,snake_position.y], [apple_position.x,apple_position.y]) / (np.linalg.norm([snake_position.x,snake_position.y]) * np.linalg.norm([apple_position.x,apple_position.y]))
+        # normalized_angle = np.dot([snake_position.x,snake_position.y], [apple_position.x,apple_position.y]) / (np.linalg.norm([snake_position.x,snake_position.y]) * np.linalg.norm([apple_position.x,apple_position.y]))
 
-        try:
-            apple_normalized = apple_vector / norm_apple_vector
-            snake_normalized = snake_vector / norm_snake_vector
-            normalized_angle = np.dot([snake_position.x,snake_position.y], [apple_position.x,apple_position.y]) / (np.linalg.norm([snake_position.x,snake_position.y]) * np.linalg.norm([apple_position.x,apple_position.y]))
-        except ZeroDivisionError:
-            print(" zero encountered when normalizing vectors. I Init vectors with (0.0) ")
-            # Handle the error gracefully, such as setting default values or logging the error
-            apple_normalized = np.zeros_like(apple_vector)
-            snake_normalized = np.zeros_like(snake_vector)
-            normalized_angle = 0  # Or any other suitable value
+        # apple_normalized = apple_vector / norm_apple_vector
+        # snake_normalized = snake_vector / norm_snake_vector
+        # print("app norma",apple_normalized,"snake_norma",snake_normalized)
+        # normalized_angle = np.dot([snake_position.x,snake_position.y], [apple_position.x,apple_position.y]) / (np.linalg.norm([snake_position.x,snake_position.y]) * np.linalg.norm([apple_position.x,apple_position.y]))
+        # if np.isnan(normalized_angle) or np.any(np.isnan(apple_normalized)) or np.any(np.isnan(snake_normalized)):
+        #     print("Warning: NaN detected in normalized_angle, apple_normalized, or snake_normalized")
 
         return normalized_angle, apple_normalized, snake_normalized
 
@@ -161,8 +179,6 @@ class GAController(GameController):
         # # delta food x and y
         # dfx = self.game.snake.p.x - self.game.food.p.x
         # dfy = self.game.snake.p.y - self.game.food.p.y
-
-        self.eucludian(self.game.food.p, self.game.snake.p)
         # score
         s = self.game.snake.score
 
@@ -175,7 +191,10 @@ class GAController(GameController):
 
         if last_move is not None:
             # print(last_move)
-            angle,norm_apple_vector, norm_snake_vector =self.angle_with_apple(self.game.food.p, last_move)
+            angle, snake_vector_dir, apple_vector_dir_normalized, snake_vector_dir_normalized = self.angle_with_apple()
+            #
+
+            # print(apple_vector_dir_normalized[0], snake_vector_dir_normalized[0], snake_vector_dir_normalized[1], snake_vector_dir_normalized[1])
             # print("angle",angle,"apple",norm_apple_vector,"snake", norm_snake_vector)
            #gets threats from the diffrent direction possible left,right,straight
             danger = self.calc_direction(last_move)
@@ -186,25 +205,6 @@ class GAController(GameController):
             normalized_snake_y = last_move.y
             # print(last_move.x)
 
-        # last_move = self.game.snake.last_move
-        # if last_move is not None:
-        #     if last_move == Vector(0, -1):  # Last move was up
-        #         self.action_space = (Vector(-1, 0), Vector(1, 0), Vector(0, -1))  # Left, right, straight
-        #         self.moves['up'] += 1
-        #         # print("last move up")
-        #     elif last_move == Vector(0, 1):  # Last move was down
-        #         self.action_space = (Vector(1, 0), Vector(-1, 0), Vector(0, 1))  # Right, left, straight
-        #         self.moves['down'] += 1
-        #         # print("last move down")
-        #     elif last_move == Vector(-1, 0):  # Last move was left
-        #         self.moves['left'] += 1
-        #         self.action_space = (Vector(0, -1), Vector(0, 1), Vector(-1, 0))  # Straight, up, down
-        #         # print("last move left")
-        #     elif last_move == Vector(1, 0):  # Last move was right
-        #         self.action_space = (Vector(0, 1), Vector(0, -1), Vector(1, 0))  # Straight, down, up
-        #         self.moves['right'] += 1
-        #         # print("last move right")
-
             # Calculate and normalize Euclidean distance to food
 
     # # Threats from borders: 1 if next to border, 0 otherwise
@@ -213,8 +213,8 @@ class GAController(GameController):
         # normalized_de = de / (self.game.grid.x - 1)
         # normalized_ds = ds / (self.game.grid.y - 1)
         # normalized_dw = dw / (self.game.grid.x - 1)
-        obs = (dn, de, ds, dw, norm_apple_vector, threat_left,threat_right,threat_straight, s)
-        print(obs)
+        obs = (apple_vector_dir_normalized[0], snake_vector_dir_normalized[0], snake_vector_dir_normalized[1], snake_vector_dir_normalized[1], threat_left,threat_right,threat_straight)
+        # print(obs)
         # obs = (dn, de, ds, dw, dfx, dfy, tn,te,ts,tw, s)
         # obs = (dn, de, ds, dw, angle, norm_snake_vector, norm_apple_vector, threat_left,threat_right,threat_straight, s)
         # print(obs)
@@ -230,7 +230,7 @@ class GAController(GameController):
                 pygame.draw.rect(self.screen, (0, max(128, 255 - i * 12), 0), self.block(p))
             pygame.draw.rect(self.screen, self.color_food, self.block(self.game.food.p))
             pygame.display.flip()
-            self.clock.tick(30)
+            self.clock.tick(15)
         return next_move
     def calc_direction(self, last_move):
             if last_move == Vector(0, -1):  # Last move was up
@@ -287,39 +287,6 @@ class GAController(GameController):
                 self.game.scale,
                 self.game.scale)
 
-    def calculate_valid_moves(self) -> Tuple[Vector, ...]:
-
-        # Calculate valid moves based on the current state of the snake.
-
-        if self.game.snake.last_move is None:
-            return ()  # Return an empty tuple if last move is None
-        else:
-            last_move = self.game.snake.last_move
-
-        # Define valid moves based on the last move
-        valid_moves = ()
-
-        # Check if moving up is valid
-        if last_move != Vector(0, -1):
-            move_up = Vector(0, 1)
-            valid_moves += (move_up,)
-
-        # Check if moving down is valid
-        if last_move != Vector(0, 1):
-            move_down = Vector(0, -1)
-            valid_moves += (move_down,)
-
-        # Check if moving left is valid
-        if last_move != Vector(1, 0):
-            move_left = Vector(-1, 0)
-            valid_moves += (move_left,)
-
-        # Check if moving right is valid
-        if last_move != Vector(-1, 0):
-            move_right = Vector(1, 0)
-            valid_moves += (move_right,)
-
-        return valid_moves
 
     def __str__(self):
         return f"__STR__:GAController(food={self.game.food},food={self.game.snake}, display={self.display})"
