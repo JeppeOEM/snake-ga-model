@@ -124,42 +124,51 @@ class GeneticAlgorithm:
 
         return babies
 
-    def generate_plots(self, data):
-        x_values = [t[0] for t in data]
-        y_values = [t[1] for t in data]
-        z_values = [t[2] for t in data]
+    def generate_plots(self, data, test_folder,iterator=""):
+        fit_val = [t[0] for t in data]
+        score_val = [t[1] for t in data]
+        death_val = [t[2] for t in data]
+        no_food_val = [t[3] for t in data]
+        same_dir_val = [t[4] for t in data]
 
         # Create a figure and three subplots
-        fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(8, 12))
+        fig, (ax1, ax2, ax3, ax4, ax5) = plt.subplots(5, 1, figsize=(8, 12))
 
-        # Plot for the first values
-        ax1.plot(x_values, marker='o', linestyle='-')
+
+        ax1.plot(fit_val, marker='o', linestyle='-')
         ax1.set_title('Max Fitness')
-        ax1.set_xlabel('Fitness')
-        ax1.set_ylabel('Generations')
+        ax1.set_xlabel('Generations')
+        ax1.set_ylabel('Fitness')
 
-        # Plot for the second values
-        ax2.plot(y_values, marker='o', linestyle='-')
+        ax2.plot(score_val, marker='o', linestyle='-')
         ax2.set_title('Max Apples Eaten Score')
         ax2.set_xlabel('Generations')
         ax2.set_ylabel('Score')
 
-        # Plot for the third values
-        ax3.plot(z_values, marker='o', linestyle='-')
-        ax3.set_title('Plot of Third Values')
+        ax3.plot(death_val, marker='o', linestyle='-')
+        ax3.set_title('Max Deaths')
         ax3.set_xlabel('Generations')
         ax3.set_ylabel('Death')
 
+        ax4.plot(no_food_val, marker='o', linestyle='-')
+        ax4.set_title('Max Moves without food')
+        ax4.set_xlabel('Generations')
+        ax4.set_ylabel('Moves')
+
+        ax5.plot(same_dir_val, marker='o', linestyle='-')
+        ax5.set_title('Same direction as before')
+        ax5.set_xlabel('Generations')
+        ax5.set_ylabel('Moves')
         # Adjust layout to prevent overlap
         plt.tight_layout()
-
-        # Ensure the 'plots' directory exists in the root directory
-        plot_directory = os.path.join(os.getcwd(), 'plots')
-        os.makedirs(plot_directory, exist_ok=True)
+        folder_path = os.path.join(test_folder, f'{iterator}_plot')  # Path inside the test_folder
+        os.makedirs(folder_path, exist_ok=True)
+        plot_directory = folder_path
 
         timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         # Save the plot to a file in the 'plots' directory
-        plot_path = os.path.join(plot_directory, f'plot_{timestamp}.png')
+        name = f'plot_{timestamp}.png'
+        plot_path = os.path.join(plot_directory, name)
         plt.savefig(plot_path)
 
         # Show the plots
@@ -172,8 +181,11 @@ class GeneticAlgorithm:
         max_fitness = population[0].fitness
         max_score = population[0].result['score']
         max_death = population[0].result['death']
+        max_moves_without_food = population[0].result['moves_without_food']
+        max_same_dir_as_before = population[0].result['same_dir_as_before']
+
         # return as tupple
-        self.max_data.append((max_fitness, max_score, max_death,))
+        self.max_data.append((max_fitness, max_score, max_death,max_moves_without_food,max_same_dir_as_before,))
 
     def rank_fitness(self, population):
             return population
@@ -189,11 +201,14 @@ class GeneticAlgorithm:
             if i > 10:
                 break
         print("LENGHT : ",len(pop))
-    def print_generation_fitness(self, generations):
+    def print_generation_fitness(self, generations, test_folder,iterator=""):
         timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        folder_name = "generation_score"
-        os.makedirs(folder_name, exist_ok=True)
-        file_name = os.path.join(folder_name, f"generation_score_{timestamp}.txt")
+        folder_name = f"{iterator}_generation_score"
+        folder_path = os.path.join(test_folder, folder_name)
+
+          # Path inside the test_folder
+        os.makedirs(folder_path, exist_ok=True)
+        file_name = os.path.join(folder_path, f"data_{timestamp}.txt")
         with open(file_name, 'w') as f:
             for i, pop in enumerate(generations, start=0):
                 pop = self.rank_fitness(pop)
@@ -203,13 +218,15 @@ class GeneticAlgorithm:
                     f.write(f"Controller {j+1} Fitness = {controller.fitness}, death: {controller.result['death']}, step: {controller.result['step']}, score: {controller.result['score']}\n")
                     f.write(f"Moves: {controller.moves}\n")
                     f.write('____________________________________________________________\n')
-                    if j > 4:
+                    if j > 0:
                         break
-                f.write(f"LENGHT: {len(pop)}\n")
+                f.write(f"LENGTH: {len(pop)}\n")
+
     def final_result(self):
         print("###########FINAL RESULT########")
-        self.print_fitness(self.rank_fitness(self.gen_info[-1]))
-
+        last_gen = self.rank_fitness(self.gen_info[-1])
+        self.print_fitness(last_gen)
+        return last_gen
 
 class TestGenerator:
     def __init__(self, iterations=0):
@@ -241,6 +258,7 @@ class TestGenerator:
     def run(self):
         for setting in self.algo_setting_arr:
             print(setting)
+    def evaluate_result():
 
 
 
@@ -258,13 +276,13 @@ if __name__ == '__main__':
     # }
     algo_settings = {
         'population_size':60,
-        'generations': 50,
+        'generations': 2,
         'keep_ratio':0.25,
         'mutation':0.08,
         'max_steps_in_game':700,
         'dims':(7,9,15,3),
         'fitness': {},
-        'verbose': False
+        'dimss':(7, 9, 15, 3)
     }
     fitness_settings = {
         'name':'score_death',
@@ -284,20 +302,28 @@ if __name__ == '__main__':
     tests.run()
 
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    folder = f'{fitness_settings['name']}_{timestamp}'
+
+
+    folder = f'test_results/{fitness_settings["name"]}_{timestamp}/test'
+    test_folder = os.path.join(os.getcwd(), folder)
+    i=0
+    data = []
     for settings in tests.algo_setting_arr:
+        i+=1
+        print("STARTING ALGORITHM NUMBER: ",i)
         fitness = Fitness(method=settings['fitness']['name'],params=settings['fitness'])
         ga=GeneticAlgorithm(population_size=settings['population_size'],
                             generations=settings['generations'],
                             keep_ratio=settings['keep_ratio'],
                             mutation=settings['mutation'],
                             max_steps_in_game=settings['max_steps_in_game'],
-                            dims=(7, 9, 15, 3),
+                            dims=settings['dims'],
                             fitness=fitness,
                             verbose=False)
 
         ga.initialize_population()
         ga.evolve()
-        ga.print_generation_fitness(ga.gen_info)
-        ga.final_result()
-        ga.generate_plots(ga.max_data,)
+        ga.print_generation_fitness(ga.gen_info,test_folder,i)
+        # left , in the end to create a tupple
+        data.append((ga.final_result(),settings,))
+        ga.generate_plots(ga.max_data,test_folder,i)
