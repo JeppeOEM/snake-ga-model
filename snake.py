@@ -71,7 +71,8 @@ class SnakeGame:
                 pygame.quit()
                 message = 'Game over! Took too many moves without eating!'
         # print(f'{message} ... Score: {self.snake.score}')
-
+# food up snake going down
+# (1.0 down)
 
 class Food:
     def __init__(self, game: SnakeGame):
@@ -90,6 +91,7 @@ class Snake:
         self.moves_without_food = 0
         self.max_without_food = 200
         initial_position = Vector.random_within(self.game.grid)
+        # Snake is starting off with a size of 2 squares
         self.body.append(initial_position)
         self.body.append(initial_position + Vector(1, 0))
     def same_direction(self):

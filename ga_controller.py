@@ -1,4 +1,5 @@
 import math
+import pprint
 from typing import Protocol, Tuple
 
 import numpy as np
@@ -46,7 +47,7 @@ class GAController(GameController):
         return self.fitness_function(self.result)
 
     def default_fitness(self, result):
-        high_score, step, score, death, death_no_food, exploration,moves_with_out_food, moves = result.values()
+        high_score, step, score, death, death_no_food, exploration,moves_without_food, moves = result.values()
         score_weight = 900000
         penalty=0
         # total_moves = sum(moves.values())
@@ -60,69 +61,45 @@ class GAController(GameController):
         # exploration = (exploration / death)
         # death_no_food = -1000*(death_no_food)
         # death = -150*(death)
-        # moves_with_out_food = -100*moves_with_out_food
+        # moves_without_food = -100*moves_without_food
         # exploration = (exploration / death) * score
         # print(death)
         # fit = 0
         # if score > 0:
         #     fit = step/(score*score_weight)
 
-        # fit = fit+death+moves_with_out_food
+        # fit = fit+death+moves_without_food
         # fit = fit+death_no_food
         score = score*10000
         high_score = high_score*100000
         death = -2*(death*100)
-        moves_with_out_food = -1*(moves_with_out_food*300)
+        moves_without_food = -1*(moves_without_food*300)
         death_no_food = -1*(death_no_food*10000)
         # print(death_no_food)
 
-        fit = high_score+death+moves_with_out_food+death_no_food+penalty
+        fit = high_score+death+moves_without_food+death_no_food+penalty
 
         return fit
 
-    # @property
-    # def fitness(self):
-        high_score, step, score, death, death_no_food, exploration,moves_with_out_food, moves = self.result.values()
-        score_weight = 900000
-        penalty=0
-        total_moves = sum(moves.values())
-        percentage_moves = {key: (value / total_moves) * 100 for key, value in moves.items()}
-        for direction, percentage in percentage_moves.items():
-            if percentage > 55:
-                penalty = -(900000+death)
-
-
-        # exploration = exploration * 0.001
-        # exploration = (exploration / death)
-        # death_no_food = -1000*(death_no_food)
-        # death = -150*(death)
-        # moves_with_out_food = -100*moves_with_out_food
-        # exploration = (exploration / death) * score
-        # print(death)
-        # fit = 0
-        # if score > 0:
-        #     fit = step/(score*score_weight)
-
-        # fit = fit+death+moves_with_out_food
-        # fit = fit+death_no_food
-        # score = score*1000
-        high_score = high_score*10000
-        death = -1*(death*150)
-        moves_with_out_food = -1*(moves_with_out_food*100)
-        death_no_food = -1*(death_no_food*1000)
-        # print(death_no_food)
-
-        fit = high_score+death+moves_with_out_food+death_no_food+penalty
-
-        return fit
 
     def eucludian(self, apple_position, snake_position):
         return ((apple_position.x - snake_position.x)**2 + (apple_position.y - snake_position.y)**2)**0.5
+
+    def normalized_distance_to_food(self) -> float:
+        # Calculate the Euclidean distance between the snake's head and the food
+        distance = self.eucludian(self.game.food.p, self.game.snake.p)
+        # Calculate the maximum possible distance in the grid (diagonal distance)
+        max_distance = ((self.game.grid.x - 1) ** 2 + (self.game.grid.y - 1) ** 2) ** 0.5
+        # Normalize the distance to a value between 0 and 1
+        normalized_distance = distance / max_distance
+        return normalized_distance
+
 
     def angle_with_apple(self):
         head = self.game.snake.body[0]
         after_head = self.game.snake.body[1]
         food = self.game.food.p
+        # print(head, after_head, food)
         apple_vector_dir = np.array([food.x, food.y]) - np.array([head.x, head.y])
         snake_vector_dir = np.array([head.x, head.y]) - np.array([after_head.y])
         # print("cgeck zero",apple_vector_dir, "snake_vector", snake_vector_dir)
@@ -141,11 +118,13 @@ class GAController(GameController):
 
         apple_vector_dir_normalized = apple_vector_dir / norm_of_apple_vector_dir
         snake_vector_dir_normalized = snake_vector_dir / norm_of_snake_vector_dir
+
         angle = math.atan2(
             apple_vector_dir_normalized[1] * snake_vector_dir_normalized[0] - apple_vector_dir_normalized[
                 0] * snake_vector_dir_normalized[1],
             apple_vector_dir_normalized[1] * snake_vector_dir_normalized[1] + apple_vector_dir_normalized[
                 0] * snake_vector_dir_normalized[0]) / math.pi
+
         return angle, snake_vector_dir, apple_vector_dir_normalized, snake_vector_dir_normalized
 
 
@@ -171,6 +150,7 @@ class GAController(GameController):
         de = self.game.grid.x - self.game.snake.p.x
         ds = self.game.grid.y - self.game.snake.p.y
         dw = self.game.snake.p.x
+        # Normalized distance
         max_distance = max(self.game.grid.x - 1, self.game.grid.y - 1)  # Maximum possible distance in the grid
         dn = dn / max_distance
         de = de / max_distance
@@ -213,8 +193,29 @@ class GAController(GameController):
         # normalized_de = de / (self.game.grid.x - 1)
         # normalized_ds = ds / (self.game.grid.y - 1)
         # normalized_dw = dw / (self.game.grid.x - 1)
-        obs = (apple_vector_dir_normalized[0], snake_vector_dir_normalized[0], snake_vector_dir_normalized[1], snake_vector_dir_normalized[1], threat_left,threat_right,threat_straight)
-        # print(obs)
+
+        normalized_dist_food = self.normalized_distance_to_food()
+
+        obs = (normalized_dist_food,
+               apple_vector_dir_normalized[0],
+               snake_vector_dir_normalized[0],
+               snake_vector_dir_normalized[1],
+               apple_vector_dir_normalized[1],
+               threat_left,
+               threat_right,
+               threat_straight)
+        data = {
+            "norm dist food": normalized_dist_food,
+            "apple vector dir 0": apple_vector_dir_normalized[0],
+            "snake vector dir 0": snake_vector_dir_normalized[0],
+            "apple vector dir 1": apple_vector_dir_normalized[1],
+            "snake vector dir 1": snake_vector_dir_normalized[1],
+            "left":threat_left,
+            "right":threat_right,
+            "straight":threat_straight
+        }
+
+        # pprint.pprint(data)
         # obs = (dn, de, ds, dw, dfx, dfy, tn,te,ts,tw, s)
         # obs = (dn, de, ds, dw, angle, norm_snake_vector, norm_apple_vector, threat_left,threat_right,threat_straight, s)
         # print(obs)
@@ -230,18 +231,18 @@ class GAController(GameController):
                 pygame.draw.rect(self.screen, (0, max(128, 255 - i * 12), 0), self.block(p))
             pygame.draw.rect(self.screen, self.color_food, self.block(self.game.food.p))
             pygame.display.flip()
-            self.clock.tick(15)
+            self.clock.tick(10000000)
         return next_move
     def calc_direction(self, last_move):
             if last_move == Vector(0, -1):  # Last move was up
                 self.action_space = (Vector(-1, 0), Vector(1, 0), Vector(0, -1))  # Left, right, straight
                 self.moves['up'] += 1
                 # Check if left move is next to a border
-                border_left = 1 if self.game.snake.p.x == 0 else 0
+                border_left = 1 if self.game.snake.p.x == 0 else -1
                 # Check if right move is next to a border
-                border_right = 1 if self.game.snake.p.x == self.game.grid.x - 1 else 0
+                border_right = 1 if self.game.snake.p.x == self.game.grid.x - 1 else -1
                 # Check if straight move is next to a border
-                border_straight = 1 if self.game.snake.p.y == 0 else 0
+                border_straight = 1 if self.game.snake.p.y == 0 else -1
                 # There are no threats in the left and right directions because it's moving up
                 return [border_left,border_right,border_straight]
 
@@ -249,11 +250,11 @@ class GAController(GameController):
                 self.action_space = (Vector(1, 0), Vector(-1, 0), Vector(0, 1))  # Right, left, straight
                 self.moves['down'] += 1
                 # Check if left move is next to a border
-                border_left = 1 if self.game.snake.p.x == self.game.grid.x - 1 else 0
+                border_left = 1 if self.game.snake.p.x == self.game.grid.x - 1 else -1
                 # Check if right move is next to a border
-                border_right = 1 if self.game.snake.p.x == 0 else 0
+                border_right = 1 if self.game.snake.p.x == 0 else -1
                 # Check if straight move is next to a border
-                border_straight = 1 if self.game.snake.p.y == self.game.grid.y - 1 else 0
+                border_straight = 1 if self.game.snake.p.y == self.game.grid.y - 1 else -1
                 # There are no threats in the left and right directions because it's moving down
                 return [border_left,border_right,border_straight]
 
@@ -261,11 +262,11 @@ class GAController(GameController):
                 self.moves['left'] += 1
                 self.action_space = (Vector(0, -1), Vector(0, 1), Vector(-1, 0))  # Straight, up, down
                 # Check if left move is next to a border
-                border_left = 1 if self.game.snake.p.y == 0 else 0
+                border_left = 1 if self.game.snake.p.y == 0 else -1
                 # Check if right move is next to a border
-                border_right = 1 if self.game.snake.p.y == self.game.grid.y - 1 else 0
+                border_right = 1 if self.game.snake.p.y == self.game.grid.y - 1 else -1
                 # Check if straight move is next to a border
-                border_straight = 1 if self.game.snake.p.x == 0 else 0
+                border_straight = 1 if self.game.snake.p.x == 0 else -1
                 # There are no threats in the left and right directions because it's moving left
                 return [border_left,border_right,border_straight]
 
@@ -273,11 +274,11 @@ class GAController(GameController):
                 self.action_space = (Vector(0, 1), Vector(0, -1), Vector(1, 0))  # Straight, down, up
                 self.moves['right'] += 1
                 # Check if left move is next to a border
-                border_left = 1 if self.game.snake.p.y == self.game.grid.y - 1 else 0
+                border_left = 1 if self.game.snake.p.y == self.game.grid.y - 1 else -1
                 # Check if right move is next to a border
-                border_right = 1 if self.game.snake.p.y == 0 else 0
+                border_right = 1 if self.game.snake.p.y == 0 else -1
                 # Check if straight move is next to a border
-                border_straight = 1 if self.game.snake.p.x == self.game.grid.x - 1 else 0
+                border_straight = 1 if self.game.snake.p.x == self.game.grid.x - 1 else -1
                 # There are no threats in the left and right directions because it's moving right
                 return [border_left,border_right,border_straight]
 
