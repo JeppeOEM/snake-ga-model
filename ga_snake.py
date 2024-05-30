@@ -94,8 +94,9 @@ class GeneticAlgorithm:
             babies = self.mate_in_pairs(parents)
             parent_models = self.extract_models(parents)
             self.models = babies + parent_models # combine arrays
+            print("FITNEEEEEEEEES",parents[0].fitness)
             if parents[0].fitness > max_fitness_so_far:
-                max_fitness_so_far = parents[0]
+                max_fitness_so_far = parents[0].fitness
             print(f"Generation {gen + 1}/{self.generations}: Best Fitness = {parents[0].fitness} Score = {parents[0].fitness} Highest Fitness So Far = {max_fitness_so_far.fitness} Score: {max_fitness_so_far.score}", end='\r', flush=True)
             if gen == self.generations:
                 print("Last Generation:",gen)
@@ -408,7 +409,7 @@ if __name__ == '__main__':
         'keep_ratio':0.25,
         'mutation':0.06,
         'max_steps_in_game':700,
-        'dims':(8,9,15,3),
+        'dims':(7,9,15,3),
         'fitness': {},
         'seed_fitness':{}
     }
@@ -418,7 +419,7 @@ if __name__ == '__main__':
         'keep_ratio':0.25,
         'mutation':0.06,
         'max_steps_in_game':700,
-        'dims':(8,120,120,3),
+        'dims':(7,120,120,3),
         'fitness': {},
         'seed_fitness':{}
     }

@@ -10,7 +10,7 @@ from game_controller import GameController
 
 
 class GAController(GameController):
-    def __init__(self, game=None, model=None,display=False, dims=None, fitness_function=None):
+    def __init__(self, game=None, model=None,display=True, dims=None, fitness_function=None):
         self.display = display
         self.game = game
         self.model = model if model else SimpleModel(dims=dims) # type: ignore
@@ -100,24 +100,26 @@ class GAController(GameController):
         after_head = self.game.snake.body[1]
         food = self.game.food.p
         # print(head, after_head, food)
-        apple_vector_dir = np.array([food.x, food.y]) - np.array([head.x, head.y])
-        snake_vector_dir = np.array([head.x, head.y]) - np.array([after_head.y])
-        # print("cgeck zero",apple_vector_dir, "snake_vector", snake_vector_dir)
-        norm_apple_vector = np.linalg.norm(apple_vector_dir)
+        apple_postion = np.array([food.x, food.y]) - np.array([head.x, head.y])
+        snake_vector_dir = np.array([head.x, head.y]) - np.array([after_head.x, after_head.y])
+        # print("apple postion",apple_postion, "snake_vector", snake_vector_dir)
+        norm_apple_vector = np.linalg.norm(apple_postion)
         norm_snake_vector = np.linalg.norm(snake_vector_dir)
-
-        apple_normalized = apple_vector_dir / norm_apple_vector
+        # print("norm", norm_apple_vector, "normsnake", norm_snake_vector)
+        apple_normalized = apple_postion / norm_apple_vector
         snake_normalized = snake_vector_dir / norm_snake_vector
 
-        norm_of_apple_vector_dir = np.linalg.norm(apple_vector_dir)
+        norm_of_apple_vector_dir = np.linalg.norm(apple_postion)
         norm_of_snake_vector_dir = np.linalg.norm(snake_vector_dir)
-        if norm_of_apple_vector_dir == 0:
-            norm_of_apple_vector_dir = 10
-        if norm_of_snake_vector_dir == 0:
-            norm_of_snake_vector_dir = 10
+        # if norm_of_apple_vector_dir == 0:
+        #     norm_of_apple_vector_dir = 10
+        # if norm_of_snake_vector_dir == 0:
+        #     norm_of_snake_vector_dir = 10
 
-        apple_vector_dir_normalized = apple_vector_dir / norm_of_apple_vector_dir
+        print("norm of", norm_of_apple_vector_dir, "normsnake of", norm_of_snake_vector_dir)
+        apple_vector_dir_normalized = apple_postion / norm_of_apple_vector_dir
         snake_vector_dir_normalized = snake_vector_dir / norm_of_snake_vector_dir
+        print("norm of2222", apple_vector_dir_normalized, "normsnake o2222f", snake_vector_dir_normalized)
 
         angle = math.atan2(
             apple_vector_dir_normalized[1] * snake_vector_dir_normalized[0] - apple_vector_dir_normalized[
@@ -172,7 +174,8 @@ class GAController(GameController):
         if last_move is not None:
             # print(last_move)
             angle, snake_vector_dir, apple_vector_dir_normalized, snake_vector_dir_normalized = self.angle_with_apple()
-            #
+            #   
+
 
             # print(apple_vector_dir_normalized[0], snake_vector_dir_normalized[0], snake_vector_dir_normalized[1], snake_vector_dir_normalized[1])
             # print("angle",angle,"apple",norm_apple_vector,"snake", norm_snake_vector)
@@ -194,9 +197,9 @@ class GAController(GameController):
         # normalized_ds = ds / (self.game.grid.y - 1)
         # normalized_dw = dw / (self.game.grid.x - 1)
 
-        normalized_dist_food = self.normalized_distance_to_food()
+        # normalized_dist_food = self.normalized_distance_to_food()
 
-        obs = (normalized_dist_food,
+        obs = (
                apple_vector_dir_normalized[0],
                snake_vector_dir_normalized[0],
                snake_vector_dir_normalized[1],
@@ -205,16 +208,16 @@ class GAController(GameController):
                threat_right,
                threat_straight)
         data = {
-            "norm dist food": normalized_dist_food,
+            # "norm dist food": normalized_dist_food,
             "apple vector dir 0": apple_vector_dir_normalized[0],
-            "snake vector dir 0": snake_vector_dir_normalized[0],
             "apple vector dir 1": apple_vector_dir_normalized[1],
+            "snake vector dir 0": snake_vector_dir_normalized[0],
             "snake vector dir 1": snake_vector_dir_normalized[1],
             "left":threat_left,
             "right":threat_right,
             "straight":threat_straight
         }
-
+        print(data)
         # pprint.pprint(data)
         # obs = (dn, de, ds, dw, dfx, dfy, tn,te,ts,tw, s)
         # obs = (dn, de, ds, dw, angle, norm_snake_vector, norm_apple_vector, threat_left,threat_right,threat_straight, s)
@@ -231,7 +234,9 @@ class GAController(GameController):
                 pygame.draw.rect(self.screen, (0, max(128, 255 - i * 12), 0), self.block(p))
             pygame.draw.rect(self.screen, self.color_food, self.block(self.game.food.p))
             pygame.display.flip()
-            self.clock.tick(10000000)
+            self.clock.tick(2)
+            if self.step > 5:
+                exit()
         return next_move
     def calc_direction(self, last_move):
             if last_move == Vector(0, -1):  # Last move was up
