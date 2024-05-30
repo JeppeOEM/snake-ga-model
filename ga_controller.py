@@ -10,7 +10,7 @@ from game_controller import GameController
 
 
 class GAController(GameController):
-    def __init__(self, game=None, model=None,display=True, dims=None, fitness_function=None):
+    def __init__(self, game=None, model=None,display=False, dims=None, fitness_function=None):
         self.display = display
         self.game = game
         self.model = model if model else SimpleModel(dims=dims) # type: ignore
@@ -116,10 +116,10 @@ class GAController(GameController):
         # if norm_of_snake_vector_dir == 0:
         #     norm_of_snake_vector_dir = 10
 
-        print("norm of", norm_of_apple_vector_dir, "normsnake of", norm_of_snake_vector_dir)
+        # print("norm of", norm_of_apple_vector_dir, "normsnake of", norm_of_snake_vector_dir)
         apple_vector_dir_normalized = apple_postion / norm_of_apple_vector_dir
         snake_vector_dir_normalized = snake_vector_dir / norm_of_snake_vector_dir
-        print("norm of2222", apple_vector_dir_normalized, "normsnake o2222f", snake_vector_dir_normalized)
+        # print("norm of2222", apple_vector_dir_normalized, "normsnake o2222f", snake_vector_dir_normalized)
 
         angle = math.atan2(
             apple_vector_dir_normalized[1] * snake_vector_dir_normalized[0] - apple_vector_dir_normalized[
@@ -217,7 +217,7 @@ class GAController(GameController):
             "right":threat_right,
             "straight":threat_straight
         }
-        print(data)
+        # print(data)
         # pprint.pprint(data)
         # obs = (dn, de, ds, dw, dfx, dfy, tn,te,ts,tw, s)
         # obs = (dn, de, ds, dw, angle, norm_snake_vector, norm_apple_vector, threat_left,threat_right,threat_straight, s)

@@ -52,6 +52,7 @@ class GeneticAlgorithm:
         max_fitness_so_far = float('-inf')
         print("Evolving a new generation")
         for gen in range(self.generations):
+            print(gen,  end='\r', flush=True)
             population = []
             for model in self.models:
                 high_score = 0
@@ -94,10 +95,10 @@ class GeneticAlgorithm:
             babies = self.mate_in_pairs(parents)
             parent_models = self.extract_models(parents)
             self.models = babies + parent_models # combine arrays
-            print("FITNEEEEEEEEES",parents[0].fitness)
-            if parents[0].fitness > max_fitness_so_far:
-                max_fitness_so_far = parents[0].fitness
-            print(f"Generation {gen + 1}/{self.generations}: Best Fitness = {parents[0].fitness} Score = {parents[0].fitness} Highest Fitness So Far = {max_fitness_so_far.fitness} Score: {max_fitness_so_far.score}", end='\r', flush=True)
+           # print("FITNEEEEEEEEES",parents[0].fitness)
+          #  if parents[0].fitness > max_fitness_so_far:
+           #     max_fitness_so_far = parents[0].fitness
+           #     print(f"Generation {gen + 1}/{self.generations}: Best Fitness = {parents[0].fitness} Score = {parents[0].fitness} Highest Fitness So Far = {max_fitness_so_far.fitness} Score: {max_fitness_so_far.score}", end='\r', flush=True)
             if gen == self.generations:
                 print("Last Generation:",gen)
                 print(f"{parents[0].fitness} {parents[0].result['score']}")
