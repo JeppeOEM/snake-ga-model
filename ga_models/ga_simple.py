@@ -42,7 +42,29 @@ class SimpleModel(GAModel):
                 baby_DNA.append(dad)
         baby = type(self)(dims=self.dims)
         baby.DNA = baby_DNA
+        # print(len(baby.DNA))
+        # print(len(baby_DNA))
+        # if baby.DNA == baby_DNA:
+        #     print(baby.DNA)
+
         return baby
+
+    def similarity(self, other):
+        if not isinstance(other, SimpleModel):
+            raise ValueError("Can only compare with another SimpleModel instance")
+
+        if self.dims != other.dims:
+            raise ValueError("Models must have the same dimensions for comparison")
+
+        similarity_score = 0
+        total_elements = 0
+
+        for layer_self, layer_other in zip(self.DNA, other.DNA):
+            similarity_score += np.sum(np.isclose(layer_self, layer_other, atol=1e-5))
+            total_elements += layer_self.size
+
+        return similarity_score / total_elements
+
 
     def DNA(self):
         return self.DNA

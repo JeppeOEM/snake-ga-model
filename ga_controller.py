@@ -101,20 +101,28 @@ class GAController(GameController):
         food = self.game.food.p
         # print(head, after_head, food)
         apple_postion = np.array([food.x, food.y]) - np.array([head.x, head.y])
+        #head minus the body part behind gives direction
         snake_vector_dir = np.array([head.x, head.y]) - np.array([after_head.x, after_head.y])
         # print("apple postion",apple_postion, "snake_vector", snake_vector_dir)
+
         norm_apple_vector = np.linalg.norm(apple_postion)
         norm_snake_vector = np.linalg.norm(snake_vector_dir)
+        if norm_apple_vector == 0:
+            norm_apple_vector = 1
+        if norm_snake_vector == 0:
+            norm_snake_vector = 1
         # print("norm", norm_apple_vector, "normsnake", norm_snake_vector)
         apple_normalized = apple_postion / norm_apple_vector
         snake_normalized = snake_vector_dir / norm_snake_vector
+        # print("apple norma", apple_normalized,"snake norm",snake_normalized)
 
         norm_of_apple_vector_dir = np.linalg.norm(apple_postion)
         norm_of_snake_vector_dir = np.linalg.norm(snake_vector_dir)
-        # if norm_of_apple_vector_dir == 0:
-        #     norm_of_apple_vector_dir = 10
-        # if norm_of_snake_vector_dir == 0:
-        #     norm_of_snake_vector_dir = 10
+        # handle warning of 0 division on startup with a vector(0.0)
+        if norm_of_apple_vector_dir == 0:
+            norm_of_apple_vector_dir = 1
+        if norm_of_snake_vector_dir == 0:
+            norm_of_snake_vector_dir = 1
 
         # print("norm of", norm_of_apple_vector_dir, "normsnake of", norm_of_snake_vector_dir)
         apple_vector_dir_normalized = apple_postion / norm_of_apple_vector_dir
@@ -197,26 +205,28 @@ class GAController(GameController):
         # normalized_ds = ds / (self.game.grid.y - 1)
         # normalized_dw = dw / (self.game.grid.x - 1)
 
-        # normalized_dist_food = self.normalized_distance_to_food()
+        normalized_dist_food = self.normalized_distance_to_food()
+        # print(angle,normalized_dist_food)
 
         obs = (
-               apple_vector_dir_normalized[0],
-               snake_vector_dir_normalized[0],
-               snake_vector_dir_normalized[1],
-               apple_vector_dir_normalized[1],
+            #    apple_vector_dir_normalized[0],
+            #    apple_vector_dir_normalized[1],
+            #    snake_vector_dir_normalized[0],
+            #    snake_vector_dir_normalized[1],
+               angle,
                threat_left,
                threat_right,
                threat_straight)
-        data = {
-            # "norm dist food": normalized_dist_food,
-            "apple vector dir 0": apple_vector_dir_normalized[0],
-            "apple vector dir 1": apple_vector_dir_normalized[1],
-            "snake vector dir 0": snake_vector_dir_normalized[0],
-            "snake vector dir 1": snake_vector_dir_normalized[1],
-            "left":threat_left,
-            "right":threat_right,
-            "straight":threat_straight
-        }
+        # data = {
+        #     # "norm dist food": normalized_dist_food,
+        #     "apple vector dir 0": apple_vector_dir_normalized[0],
+        #     "apple vector dir 1": apple_vector_dir_normalized[1],
+        #     "snake vector dir 0": snake_vector_dir_normalized[0],
+        #     "snake vector dir 1": snake_vector_dir_normalized[1],
+        #     "left":threat_left,
+        #     "right":threat_right,
+        #     "straight":threat_straight
+        # }
         # print(data)
         # pprint.pprint(data)
         # obs = (dn, de, ds, dw, dfx, dfy, tn,te,ts,tw, s)

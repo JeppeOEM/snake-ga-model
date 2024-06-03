@@ -71,8 +71,7 @@ class SnakeGame:
                 pygame.quit()
                 message = 'Game over! Took too many moves without eating!'
         # print(f'{message} ... Score: {self.snake.score}')
-# food up snake going down
-# (1.0 down)
+
 
 class Food:
     def __init__(self, game: SnakeGame):

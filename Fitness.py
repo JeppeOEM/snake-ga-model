@@ -11,6 +11,8 @@ class Fitness:
             'kejitech':self.kejitech,
             'food_death':self.food_death,
             'food_death_simple':self.food_death_simple,
+            'death_simple':self.death_simple,
+            "food_step_single_life":self.food_step_single_life
         }
 
     def __repr__(self) -> str:
@@ -111,4 +113,21 @@ class Fitness:
         # moves_without_food = moves_without_food*params['moves_without_food']
         death = -1*(death*params['death'])
         fit = score + death
+        return fit
+    def death_simple(self, result):
+        params = self.params
+        high_score, step, score, death, death_no_food, exploration,moves_without_food, same_dir_as_before, moves = result.values()
+        fit = 0
+        # score = score*params['score']
+        # moves_without_food = moves_without_food*params['moves_without_food']
+        death = -1*(death*params['death'])
+        fit = death
+        return fit
+    def food_step_single_life(self, result):
+        params = self.params
+        high_score, step, score, death, death_no_food, exploration,moves_without_food, same_dir_as_before, moves = result.values()
+        fit = 0
+
+        moves_without_food = -1*(moves_without_food*params['moves_without_food'])
+        fit = death
         return fit
