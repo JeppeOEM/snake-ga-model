@@ -1,3 +1,0 @@
-reward hight score instead of score
-
-moves_without_food

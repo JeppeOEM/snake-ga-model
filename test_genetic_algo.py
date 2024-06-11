@@ -81,18 +81,38 @@ class TestGenerator:
 
 TEST_RUN=False
 
-def test_genetic_algo(verbose,
-                      iterations,
-                      algo_settings,
-                      algo_attr,
-                      fitness_settings,
-                      fitness_attr,
+def save_fitness_to_files(array_of_arrays, fitness_settings):
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    base_folder = f'test_results/{timestamp}/{fitness_settings["name"]}_{timestamp}/'
+    
+
+    os.makedirs(base_folder, exist_ok=True)
+    
+    # iterate through each inner array
+    for index, inner_array in enumerate(array_of_arrays):
+        # defibe path for the current inner array
+        file_path = os.path.join(base_folder, f'fitness_values_{index + 1}.txt')
+        
+        # write the fitness values to the file
+        with open(file_path, 'w') as file:
+            for obj in inner_array:
+                if 'fitness' in obj:
+                    file.write(f'{obj["fitness"]}\n')
+
+
+def test_genetic_algo(verbose=False,
+                      iterations=None,
+                      algo_settings=None,
+                      algo_attr=None,
+                      fitness_settings=None,
+                      fitness_attr=None,
                       fitness_seed=None,
                       fitness_seed_attr=None,
-                      change_fitness=0):
+                      change_fitness=0,
+                      obs=None):
         if TEST_RUN:
-            iterations = 3
-            algo_settings['generations'] = 3
+            iterations = 1
+            algo_settings['generations'] = 1
             print("******************TEST RUN******************")
             print("SET TEST_RUN = False TO DISABLE")
 
@@ -107,7 +127,7 @@ def test_genetic_algo(verbose,
 
         if TEST_RUN:
             print("Testing if different settings are generated")
-            pp = pprint.PrettyPrinter(indent=4)  # Create a PrettyPrinter instance with an indentation of 4 spaces
+            pp = pprint.PrettyPrinter(indent=4)  
             for algo_settings in tests.algo_setting_arr:
                 print("Algorithm Settings:")
                 pp.pprint(algo_settings)
@@ -134,20 +154,23 @@ def test_genetic_algo(verbose,
                                 fitness=fitness,
                                 fitness_seed=fitness_seed,
                                 change_fitness=change_fitness,
-                                verbose=False)
+                                verbose=False,
+                                obs=obs)
 
             init_pop = ga.initialize_population()
             ga.evolve(init_pop)
             if verbose == True:
                 ga.print_generation_fitness(ga.gen_info,test_folder,i)
             # left , in the end to create a tupple
+            # save_fitness_to_files(ga.gen_info)
             final_result = ga.final_result(verbose=False)
             folder_name = f'{i}_settings'
-            tests.save_result_txt(final_result,settings,i, test_folder, folder_name),
-            data.append((final_result,settings,i,))
-            ga.generate_plots(ga.max_data,test_folder,i)
+            if TEST_RUN == False:
+                tests.save_result_txt(final_result,settings,i, test_folder, folder_name),
+                data.append((final_result,settings,i,))
+                ga.generate_plots(ga.max_data,test_folder,i)
         # find best among the test settings
-        best_population, best_settings, iteration = tests.find_highest_scoring_population(data)
-        tests.save_result_txt(best_population, best_settings, iteration, test_folder,f"0_BEST_TEST")
-        return (best_population, best_settings, iteration, folder,)
+                best_population, best_settings, iteration = tests.find_highest_scoring_population(data)
+                tests.save_result_txt(best_population, best_settings, iteration, test_folder,f"0_BEST_TEST")
+                return (best_population, best_settings, iteration, folder,)
 

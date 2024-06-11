@@ -10,9 +10,10 @@ class Fitness:
             'train_death': self.train_death,
             'kejitech':self.kejitech,
             'food_death':self.food_death,
-            'food_death_simple':self.food_death_simple,
+            'score_step':self.score_step,
             'death_simple':self.death_simple,
-            "food_step_single_life":self.food_step_single_life
+            "food_step":self.food_step,
+            "moves_no_food":self.moves_no_food,
         }
 
     def __repr__(self) -> str:
@@ -105,15 +106,9 @@ class Fitness:
 
         return fit
 
-    def food_death_simple(self, result):
-        params = self.params
-        high_score, step, score, death, death_no_food, exploration,moves_without_food, same_dir_as_before, moves = result.values()
-        fit = 0
-        score = score*params['score']
-        # moves_without_food = moves_without_food*params['moves_without_food']
-        death = -1*(death*params['death'])
-        fit = score + death
-        return fit
+
+
+
     def death_simple(self, result):
         params = self.params
         high_score, step, score, death, death_no_food, exploration,moves_without_food, same_dir_as_before, moves = result.values()
@@ -123,11 +118,32 @@ class Fitness:
         death = -1*(death*params['death'])
         fit = death
         return fit
-    def food_step_single_life(self, result):
+    
+
+    def food_step(self, result):
         params = self.params
         high_score, step, score, death, death_no_food, exploration,moves_without_food, same_dir_as_before, moves = result.values()
         fit = 0
-
-        moves_without_food = -1*(moves_without_food*params['moves_without_food'])
-        fit = death
+        score = score*params['score']
+        moves_without_food = -0.1*(moves_without_food*params['moves_without_food'])
+        # print(moves_without_food)
+        fit = score+moves_without_food
         return fit
+    
+    def score_step(self, result):
+        params = self.params
+        high_score, step, score, death, death_no_food, exploration,moves_without_food, same_dir_as_before, moves = result.values()
+        fit = 0
+        score = (score*params['score']) / step # 200
+        moves_without_food =  -0.1*(moves_without_food*params['moves_without_food']) #0.3
+        fit = score+moves_without_food
+        return fit
+    
+    def moves_no_food(self, result):
+        params = self.params
+        high_score, step, score, death, death_no_food, exploration,moves_without_food, same_dir_as_before, moves = result.values()
+        fit = 0
+        score = -(moves_without_food*params['moves_without_food'])
+        fit = score
+        return fit
+    

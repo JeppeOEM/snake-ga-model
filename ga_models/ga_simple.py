@@ -1,6 +1,5 @@
 import random
 from typing import Protocol, Tuple, List, Sequence
-import numpy
 import numpy as np
 from ga_models.ga_protocol import GAModel
 from ga_models.activation import sigmoid, tanh, softmax

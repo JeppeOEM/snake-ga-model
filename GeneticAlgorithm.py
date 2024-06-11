@@ -12,7 +12,7 @@ def print_object_ids(obj_list):
     ids = [id(obj) for obj in obj_list]
     print("Object IDs:", ids)
 class GeneticAlgorithm:
-    def __init__(self, population_size=10, generations=2,keep_ratio=0.1, mutation=0.1, max_steps_in_game=1000,verbose=True, dims = (9, 9, 15, 3), fitness = None, fitness_seed = None, change_fitness=0):
+    def __init__(self, population_size=10, generations=2,keep_ratio=0.1, mutation=0.1, max_steps_in_game=900000,verbose=True, dims = (9, 9, 15, 3), fitness = None, fitness_seed = None, change_fitness=0,obs="default"):
         self.population_size = population_size
         self.generations = generations
         self.population = []
@@ -27,6 +27,9 @@ class GeneticAlgorithm:
         self.fitness_seed = fitness_seed
         self.change_fitness = change_fitness # what generation should fitness function be swapped
         self.max_data = []
+        self.obs = obs # what observational method to process the data inputs from the game
+
+
 
     def __repr__(self) -> str:
         return (f"GeneticAlgorithm(population_size={self.population_size}, generations={self.generations}, "
@@ -37,10 +40,10 @@ class GeneticAlgorithm:
         models = []
         for _ in range(self.population_size):
             game = SnakeGame()
-            controller = GAController(game=game,dims=self.dims)
+            controller = GAController(game=game,dims=self.dims,observation=self.obs)
             models.append(controller.model)
         return models
-        # print(len(self.models))
+
 
 
     def evolve(self, init_pop):
@@ -49,10 +52,8 @@ class GeneticAlgorithm:
         model_ga = init_pop
         for gen in range(self.generations):
             print("START")
-            # print_object_ids(model_ga)
             print(gen,  end='\r', flush=True)
             population = []
-            # print("model fucking ga",model_ga)
             for model in model_ga:
                 high_score = 0
                 result = {"high_score":0,
@@ -69,10 +70,10 @@ class GeneticAlgorithm:
                     game = SnakeGame(accum_step=result['step'],
                                      max_steps_in_game=self.max_steps_in_game)
              
-                    controller = GAController(game=game, model=model, dims=self.dims, fitness_function=self.fitness)
+                    controller = GAController(game=game, model=model, dims=self.dims, fitness_function=self.fitness, observation=self.obs)
                     if gen < self.change_fitness:
                         print("****Changing Fitness Function****")
-                        controller = GAController(game=game, model=model, dims=self.dims, fitness_function=self.fitness_seed)
+                        controller = GAController(game=game, model=model, dims=self.dims, fitness_function=self.fitness_seed,observation=self.obs)
                     
                     game.run()
                     if game.score > high_score:
@@ -81,14 +82,16 @@ class GeneticAlgorithm:
                     result['step'] += game.step
                     result['score'] += game.score
                     result['death'] += game.death
-                    if result['death'] > 0:
-                        break
+
                     result['death_no_food'] += game.death_no_food
                     result['exploration'] += game.exploration
                     result['moves_without_food'] += game.snake.moves_without_food
                     result['same_dir_as_before'] += game.same_dir_as_before
-                    # Increment steps in each direction
                     result['moves'] = dict(Counter(result['moves']) + Counter(controller.moves))
+                    if result['death'] > 0:
+                        # print(result)
+                        break
+                    # Increment steps in each direction
                 controller.result = result
                 population.append(controller)
             self.gen_info.append(population)
@@ -100,12 +103,7 @@ class GeneticAlgorithm:
             model_ga = []
             model_ga.extend(babies)
             model_ga.extend(parent_model_ga) # combine arrays
-            # print("END")
-            # print_object_ids(model_ga)
-           # print("FITNEEEEEEEEES",parents[0].fitness)
-          #  if parents[0].fitness > max_fitness_so_far:
-           #     max_fitness_so_far = parents[0].fitness
-           #     print(f"Generation {gen + 1}/{self.generations}: Best Fitness = {parents[0].fitness} Score = {parents[0].fitness} Highest Fitness So Far = {max_fitness_so_far.fitness} Score: {max_fitness_so_far.score}", end='\r', flush=True)
+
             if gen == self.generations:
                 print("Last Generation:",gen)
                 print(f"{parents[0].fitness} {parents[0].result['score']}")
@@ -127,7 +125,6 @@ class GeneticAlgorithm:
     def extract_models(self, parents):
         extracted_models = []
         for parent in parents:
-             print(parent.model)
              extracted_models.append(parent.model)
         return extracted_models
     def mate_in_pairs(self, population):
@@ -137,11 +134,8 @@ class GeneticAlgorithm:
         while len(babies) < size:
                 dad, mom = random.sample(population, 2)
                 baby = dad.model + mom.model
-                # baby2 = dad.model + mom.model
                 baby.mutate(self.mutation)
-                # baby2.mutate(self.mutation)
                 babies.append(baby)
-                # babies.append(baby2)
 
         return babies
 
@@ -178,17 +172,20 @@ class GeneticAlgorithm:
         max_death = population[0].result['death']
         max_moves_without_food = population[0].result['moves_without_food']
         max_same_dir_as_before = population[0].result['same_dir_as_before']
+        values = (max_fitness, max_score, max_death,max_moves_without_food,max_same_dir_as_before,)
+        print(values)
 
         # return as tupple
-        self.max_data.append((max_fitness, max_score, max_death,max_moves_without_food,max_same_dir_as_before,))
+        self.max_data.append(values)
 
     def rank_fitness(self, population):
-        # Sort population by fitness in ascending order
         population = sorted(population, key=lambda x: x.fitness, reverse=True)
         
-        # Print the fitness score of each member in the population
+
         for i, individual in enumerate(population):
-            print(f"Individual {i}: Fitness = {individual.fitness}")
+            if i < 10:
+                print(f"Individual {i}: Fitness = {individual.fitness} Score = {individual.result['score']}moves_without_food:{individual.result['moves_without_food']}")
+    
         
         return population
 
@@ -209,7 +206,6 @@ class GeneticAlgorithm:
         folder_name = f"{iterator}_generation_score"
         folder_path = os.path.join(test_folder, folder_name)
 
-          # Path inside the test_folder
         os.makedirs(folder_path, exist_ok=True)
         file_name = os.path.join(folder_path, f"data_{timestamp}.txt")
         with open(file_name, 'w') as f:
